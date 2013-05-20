@@ -1,0 +1,398 @@
+
+Map of Debug\flash.sm8 from link file Debug\flash.lkf - Tue May 07 16:38:39 2013
+
+
+                               --------
+                               Segments
+                               --------
+
+start 00008080 end 000081b1 length   305 segment .const
+start 000081b4 end 00008865 length  1713 segment .text
+start 00004000 end 00004000 length     0 segment .eeprom
+start 00000000 end 00000000 length     0 segment .bsct
+start 00000000 end 0000000a length    10 segment .ubsct
+start 0000000a end 0000000a length     0 segment .bit
+start 0000000a end 0000000a length     0 segment .share
+start 00000100 end 00000100 length     0 segment .data
+start 00000100 end 00000100 length     0 segment .bss
+start 00000000 end 000004dc length  1244 segment .info.
+start 00000000 end 000022db length  8923 segment .debug
+start 00008000 end 00008080 length   128 segment .const
+start 000081b1 end 000081b4 length     3 segment .init
+
+
+                               -------
+                               Modules
+                               -------
+
+C:\Program Files\COSMIC\CXSTM8_32K\Lib\crtsi0.sm8:
+start 000081b4 end 000081ff length    75 section .text
+start 00000100 end 00000100 length     0 section .bss
+start 00000000 end 00000000 length     0 section .ubsct
+start 00000000 end 0000002f length    47 section .info.
+
+Debug\stm8s_flash.o:
+start 000081ff end 00008519 length   794 section .text
+start 00000000 end 00000e37 length  3639 section .debug
+start 0000002f end 000000a4 length   117 section .info.
+
+Debug\stm8s_tim4.o:
+start ******** end ******** length     0 section .text *** removed ***
+start 00000e37 end 0000196c length  2869 section .debug
+start 000000a4 end 00000118 length   116 section .info.
+
+Debug\main_flash.o:
+start 00008519 end 0000863c length   291 section .text
+start 0000196c end 00001b87 length   539 section .debug
+start 00000118 end 0000018c length   116 section .info.
+start 00008080 end 00008161 length   225 section .const
+
+Debug\tp_stm8.o:
+start 0000863c end 00008791 length   341 section .text
+start 00001b87 end 00002170 length  1513 section .debug
+start 0000018c end 000001fd length   113 section .info.
+start 00008161 end 000081b1 length    80 section .const
+
+(C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)cmulx.o:
+start 00008791 end 000087a5 length    20 section .text
+start 000001fd end 0000022c length    47 section .info.
+
+(C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)ladc.o:
+start 000087a5 end 000087b6 length    17 section .text
+start 0000022c end 0000025a length    46 section .info.
+
+(C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)ladd.o:
+start 000087b6 end 000087ce length    24 section .text
+start 0000025a end 00000288 length    46 section .info.
+
+(C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)lgadc.o:
+start 000087ce end 000087de length    16 section .text
+start 00000288 end 000002b7 length    47 section .info.
+
+(C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)lgadd.o:
+start 000087de end 000087f5 length    23 section .text
+start 000002b7 end 000002e6 length    47 section .info.
+
+(C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)lreg.o:
+start 00000000 end 00000004 length     4 section .ubsct
+start 000002e6 end 00000314 length    46 section .info.
+
+(C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)ltor.o:
+start 000087f5 end 00008807 length    18 section .text
+start 00000314 end 00000342 length    46 section .info.
+
+(C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)rtol.o:
+start 00008807 end 00008819 length    18 section .text
+start 00000342 end 00000370 length    46 section .info.
+
+(C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)umul.o:
+start 00008819 end 00008855 length    60 section .text
+start 00000370 end 0000039e length    46 section .info.
+
+(C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)xreg.o:
+start 00000004 end 00000007 length     3 section .ubsct
+start 0000039e end 000003cc length    46 section .info.
+
+(C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)xymvx.o:
+start 00008855 end 00008864 length    15 section .text
+start 000003cc end 000003fb length    47 section .info.
+
+(C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)yreg.o:
+start 00000007 end 0000000a length     3 section .ubsct
+start 000003fb end 00000429 length    46 section .info.
+
+Debug\stm8_interrupt_vector.o:
+start 00008864 end 00008865 length     1 section .text
+start 00002170 end 000022db length   363 section .debug
+start 00000429 end 000004a8 length   127 section .info.
+start 00008000 end 00008080 length   128 section .const
+
+
+                             -----------
+                             Stack usage
+                             -----------
+
+Debug\main_flash.o:
+_FLASH_Putstring                 19   (12)
+_FLASH_Readstring                15   (9)
+_main                        >   54   (35)
+
+Debug\stm8_interrupt_vector.o:
+f_NonHandledInterrupt        >    5   (5)
+
+Debug\stm8s_flash.o:
+_FLASH_DeInit                     3   (3)
+_FLASH_EraseBlock            >   13   (11)
+_FLASH_EraseByte             >    6   (6)
+_FLASH_EraseOptionByte       >    7   (2)
+_FLASH_GetBootSize           >    9   (6)
+_FLASH_GetFlagStatus         >    3   (3)
+_FLASH_GetLowPowerMode       >    2   (2)
+_FLASH_GetProgrammingTime    >    2   (2)
+_FLASH_ITConfig              >    2   (2)
+_FLASH_Lock                  >    2   (2)
+_FLASH_ProgramBlock          >   18   (16)
+_FLASH_ProgramByte                7   (7)
+_FLASH_ProgramOptionByte     >   10   (5)
+_FLASH_ProgramWord           >   10   (10)
+_FLASH_ReadByte                   6   (6)
+_FLASH_ReadOptionByte        >    6   (6)
+_FLASH_SetLowPowerMode       >    3   (3)
+_FLASH_SetProgrammingTime         2   (2)
+_FLASH_Unlock                     2   (2)
+_FLASH_WaitForLastOperation       5   (5)
+
+Debug\tp_stm8.o:
+_BP_etat                     >    2   (2)
+_BP_init                     >    2   (2)
+_ITC_enableIT                >    2   (2)
+_LEDV_etat                   >    2   (2)
+_LEDV_init                   >    2   (2)
+_PortC_IDR_filtre            >    2   (2)
+_PortC_init                  >    2   (2)
+_TIL321_affiche              >   19   (2)
+_TIL321_init                 >    2   (2)
+_UART2_GetChar                    2   (2)
+_UART2_Putchar                    3   (3)
+_UART2_Putstring                  9   (6)
+_UART2_RXNEFlag              >    2   (2)
+_UART2_init                       2   (2)
+_UART2_initITReceive         >    2   (2)
+_convertBCD2String           >   29   (25)
+_convertBCD2TIL                  17   (13)
+
+Stack size: 59
+
+
+                              ---------
+                              Call tree
+                              ---------
+   1 > _BP_etat: (2)
+
+   2 > _BP_init: (2)
+
+   3 > _FLASH_EraseBlock: (11)
+
+   4 > _FLASH_EraseByte: (6)
+
+   5 > _FLASH_EraseOptionByte: (2)
+   6      + _FLASH_WaitForLastOperation: (5)
+       
+   7 > _FLASH_GetBootSize: (6)
+
+   8 > _FLASH_GetFlagStatus: (3)
+
+   9 > _FLASH_GetLowPowerMode: (2)
+
+  10 > _FLASH_GetProgrammingTime: (2)
+
+  11 > _FLASH_ITConfig: (2)
+
+  12 > _FLASH_Lock: (2)
+
+  13 > _FLASH_ProgramBlock: (16)
+
+  14 > _FLASH_ProgramOptionByte: (5)
+  15      + _FLASH_WaitForLastOperation --> 6
+       
+  16 > _FLASH_ProgramWord: (10)
+
+  17 > _FLASH_ReadOptionByte: (6)
+
+  18 > _FLASH_SetLowPowerMode: (3)
+
+  19 > _ITC_enableIT: (2)
+
+  20 > _LEDV_etat: (2)
+
+  21 > _LEDV_init: (2)
+
+  22 > _PortC_IDR_filtre: (2)
+
+  23 > _PortC_init: (2)
+
+  24 > _TIL321_affiche: (2)
+  25      + _convertBCD2TIL: (13)
+       
+  26 > _TIL321_init: (2)
+
+  27 > _UART2_RXNEFlag: (2)
+
+  28 > _UART2_initITReceive: (2)
+
+  29 > __stext: (0)
+
+  30 > _convertBCD2String: (25)
+
+  31 > _main: (35)
+  32      + _FLASH_DeInit: (3)
+  33      + _FLASH_Putstring: (12)
+  34      |    + _FLASH_ProgramByte: (7)
+          | 
+  35      + _FLASH_Readstring: (9)
+  36      |    + _FLASH_ReadByte: (6)
+          | 
+  37      + _FLASH_SetProgrammingTime: (2)
+  38      + _FLASH_Unlock: (2)
+  39      + _UART2_GetChar: (2)
+  40      + _UART2_Putstring: (6)
+  41      |    + _UART2_Putchar: (3)
+          | 
+  42      + _UART2_init: (2)
+       
+  43 > f_NonHandledInterrupt: (5)
+
+  44   _FLASH_DeInit --> 32
+
+  45   _FLASH_ProgramByte --> 34
+
+  46   _FLASH_Putstring --> 33
+
+  47   _FLASH_ReadByte --> 36
+
+  48   _FLASH_Readstring --> 35
+
+  49   _FLASH_SetProgrammingTime --> 37
+
+  50   _FLASH_Unlock --> 38
+
+  51   _FLASH_WaitForLastOperation --> 6
+
+  52   _UART2_GetChar --> 39
+
+  53   _UART2_Putchar --> 41
+
+  54   _UART2_Putstring --> 40
+
+  55   _UART2_init --> 42
+
+  56   _convertBCD2TIL --> 25
+
+
+
+                               -------
+                               Symbols
+                               -------
+
+_BP_etat                      0000875b   defined in Debug\tp_stm8.o section .text
+_BP_init                      00008740   defined in Debug\tp_stm8.o section .text
+_FLASH_DeInit                 00008223   defined in Debug\stm8s_flash.o section .text
+                                         used in Debug\main_flash.o
+_FLASH_EraseBlock             000083fc   defined in Debug\stm8s_flash.o section .text
+_FLASH_EraseByte              0000824b   defined in Debug\stm8s_flash.o section .text
+_FLASH_EraseOptionByte        000082f3   defined in Debug\stm8s_flash.o section .text
+_FLASH_GetBootSize            00008369   defined in Debug\stm8s_flash.o section .text
+_FLASH_GetFlagStatus          000083a0   defined in Debug\stm8s_flash.o section .text
+_FLASH_GetLowPowerMode        0000835d   defined in Debug\stm8s_flash.o section .text
+_FLASH_GetProgrammingTime     00008363   defined in Debug\stm8s_flash.o section .text
+_FLASH_ITConfig               0000823d   defined in Debug\stm8s_flash.o section .text
+_FLASH_Lock                   00008215   defined in Debug\stm8s_flash.o section .text
+_FLASH_ProgramBlock           0000848e   defined in Debug\stm8s_flash.o section .text
+_FLASH_ProgramByte            00008259   defined in Debug\stm8s_flash.o section .text
+                                         used in Debug\main_flash.o
+_FLASH_ProgramOptionByte      000082cf   defined in Debug\stm8s_flash.o section .text
+_FLASH_ProgramWord            00008277   defined in Debug\stm8s_flash.o section .text
+_FLASH_Putstring              00008519   defined in Debug\main_flash.o section .text
+_FLASH_ReadByte               0000826a   defined in Debug\stm8s_flash.o section .text
+                                         used in Debug\main_flash.o
+_FLASH_ReadOptionByte         0000830e   defined in Debug\stm8s_flash.o section .text
+_FLASH_Readstring             00008574   defined in Debug\main_flash.o section .text
+_FLASH_SetLowPowerMode        0000833f   defined in Debug\stm8s_flash.o section .text
+_FLASH_SetProgrammingTime     00008352   defined in Debug\stm8s_flash.o section .text
+                                         used in Debug\main_flash.o
+_FLASH_Unlock                 000081ff   defined in Debug\stm8s_flash.o section .text
+                                         used in Debug\main_flash.o
+_FLASH_WaitForLastOperation   000083b3   defined in Debug\stm8s_flash.o section .text
+_ITC_enableIT                 0000863c   defined in Debug\tp_stm8.o section .text
+_LEDV_etat                    00008731   defined in Debug\tp_stm8.o section .text
+_LEDV_init                    00008728   defined in Debug\tp_stm8.o section .text
+_PortC_IDR_filtre             000086c8   defined in Debug\tp_stm8.o section .text
+_PortC_init                   000086bf   defined in Debug\tp_stm8.o section .text
+_TIL321_affiche               000086b7   defined in Debug\tp_stm8.o section .text
+_TIL321_init                  000086ae   defined in Debug\tp_stm8.o section .text
+_TIM4_ARRPreloadConfig        ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_ClearFlag               ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_ClearITPendingBit       ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_Cmd                     ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_DeInit                  ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_GenerateEvent           ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_GetCounter              ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_GetFlagStatus           ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_GetITStatus             ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_GetPrescaler            ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_ITConfig                ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_PrescalerConfig         ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_SelectOnePulseMode      ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_SetAutoreload           ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_SetCounter              ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_TimeBaseInit            ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_UpdateDisableConfig     ********   *** removed from Debug\stm8s_tim4.o ***
+_TIM4_UpdateRequestConfig     ********   *** removed from Debug\stm8s_tim4.o ***
+_UART2_GetChar                00008660   defined in Debug\tp_stm8.o section .text
+                                         used in Debug\main_flash.o
+_UART2_Putchar                0000866d   defined in Debug\tp_stm8.o section .text
+_UART2_Putstring              0000867e   defined in Debug\tp_stm8.o section .text
+                                         used in Debug\main_flash.o
+_UART2_RXNEFlag               0000869f   defined in Debug\tp_stm8.o section .text
+_UART2_init                   0000863e   defined in Debug\tp_stm8.o section .text
+                                         used in Debug\main_flash.o
+_UART2_initITReceive          0000865b   defined in Debug\tp_stm8.o section .text
+__endmem                      000005ff   defined in command file
+                                         *** not used ***
+__endzp                       0000000a   defined in command file section .ubsct
+                                         used in C:\Program Files\COSMIC\CXSTM8_32K\Lib\crtsi0.sm8
+__idesc__                     000081b1   defined in linker section .init
+                                         used in C:\Program Files\COSMIC\CXSTM8_32K\Lib\crtsi0.sm8
+__memory                      00000100   defined in command file section .bss
+                                         used in C:\Program Files\COSMIC\CXSTM8_32K\Lib\crtsi0.sm8
+__stack                       000007ff   defined in command file
+                                         used in C:\Program Files\COSMIC\CXSTM8_32K\Lib\crtsi0.sm8
+__startmem                    00000100   defined in command file section .bss
+                                         *** not used ***
+__stext                       000081b4   defined in C:\Program Files\COSMIC\CXSTM8_32K\Lib\crtsi0.sm8 section .text
+                                         used in Debug\stm8_interrupt_vector.o
+__vectab                      00008000   defined in Debug\stm8_interrupt_vector.o section .const
+_convertBCD2String            000086fb   defined in Debug\tp_stm8.o section .text
+_convertBCD2TIL               000086ce   defined in Debug\tp_stm8.o section .text
+_exit                         000081fd   defined in C:\Program Files\COSMIC\CXSTM8_32K\Lib\crtsi0.sm8 section .text
+_main                         000085a8   defined in Debug\main_flash.o section .text
+                                         used in C:\Program Files\COSMIC\CXSTM8_32K\Lib\crtsi0.sm8
+c_cmulx                       00008791   defined in (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)cmulx.o section .text
+                                         used in Debug\stm8s_flash.o
+c_ladc                        000087a5   defined in (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)ladc.o section .text
+                                         used in Debug\main_flash.o
+c_ladd                        000087b6   defined in (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)ladd.o section .text
+                                         used in Debug\main_flash.o
+c_lgadc                       000087ce   defined in (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)lgadc.o section .text
+                                         used in Debug\main_flash.o
+c_lgadd                       000087de   defined in (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)lgadd.o section .text
+                                         used in Debug\stm8s_flash.o
+c_lreg                        00000000   defined in (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)lreg.o section .ubsct
+                                         used in Debug\stm8s_flash.o
+                                                 Debug\main_flash.o
+                                                 (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)cmulx.o
+                                                 (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)ladc.o
+                                                 (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)ladd.o
+                                                 (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)lgadd.o
+                                                 (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)ltor.o
+                                                 (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)rtol.o
+                                                 (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)umul.o
+c_ltor                        000087f5   defined in (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)ltor.o section .text
+                                         used in Debug\stm8s_flash.o
+                                                 Debug\main_flash.o
+c_rtol                        00008807   defined in (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)rtol.o section .text
+                                         used in Debug\stm8s_flash.o
+c_umul                        00008819   defined in (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)umul.o section .text
+                                         used in Debug\stm8s_flash.o
+c_x                           00000004   defined in (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)xreg.o section .ubsct
+                                         used in C:\Program Files\COSMIC\CXSTM8_32K\Lib\crtsi0.sm8
+                                                 Debug\stm8s_flash.o
+                                                 (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)umul.o
+                                                 (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)xymvx.o
+c_xymvx                       00008855   defined in (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)xymvx.o section .text
+                                         used in Debug\main_flash.o
+                                                 Debug\tp_stm8.o
+c_y                           00000007   defined in (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)yreg.o section .ubsct
+                                         used in C:\Program Files\COSMIC\CXSTM8_32K\Lib\crtsi0.sm8
+                                                 (C:\Program Files\COSMIC\CXSTM8_32K\Lib\libm0.sm8)umul.o
+f_NonHandledInterrupt         00008864   defined in Debug\stm8_interrupt_vector.o section .text
