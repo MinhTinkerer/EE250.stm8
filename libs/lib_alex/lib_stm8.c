@@ -52,7 +52,7 @@ char UART2_RXNEFlag(void) {
 }
 
 void TIL321_init(void) {
-	GPIOB->DDR = PB_ALL_OUT;				//Sortie
+	GPIOB->DDR = PB_ALL_OUT;		//Sortie
 	GPIOB->CR1 = PB_ALL_PUSH_PULL;	//Push-pull
 }
 
@@ -101,7 +101,7 @@ char ascii2num(char ascii) {
 }
 
 void LEDV_init(void) {
-	GPIOD->DDR = GPIOD->DDR | GPIO_PIN_0;		//Sortie
+	GPIOD->DDR = GPIOD->DDR | GPIO_PIN_0;	//Sortie
 	GPIOD->CR1 = GPIOD->CR1 & ~GPIO_PIN_0;	//Open Drain
 }
 
@@ -116,11 +116,11 @@ void BP_init(char numero) {
 	switch(numero) {
 		case 1:
 		GPIOD->DDR = GPIOD->DDR & ~GPIO_PIN_7;	//Entree
-		GPIOD->CR1 = GPIOD->CR1 | GPIO_PIN_7;		//Pullup
+		GPIOD->CR1 = GPIOD->CR1 | GPIO_PIN_7;	//Pullup
 		break;
 		case 2:
 		GPIOE->DDR = GPIOE->DDR & ~GPIO_PIN_7;	//Entree
-		GPIOE->CR1 = GPIOE->CR1 | GPIO_PIN_7;		//Pullup
+		GPIOE->CR1 = GPIOE->CR1 | GPIO_PIN_7;	//Pullup
 		break;
 		default:
 		break;
