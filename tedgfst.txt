@@ -1,8 +1,12 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 blabla original
 
 
 zaodijzaiodjaziodjiozdjoiajzdoijzaiodjioazjdiozaj
+=======
+blabla original de mes boules
+>>>>>>> 032330bdc8b6afb86a31fb8faeb0bd7066526de2
 =======
 blabla original de mes boules
 >>>>>>> 032330bdc8b6afb86a31fb8faeb0bd7066526de2
