@@ -1,11 +1,11 @@
 EE250.stm8
 =====
 
-Mini projet d'electronique numerique
+Mini projet d'électronique numérique
 
-Colaborateurs : 
+Collaborateurs : 
     - EYMARD Gabrielle
     - NODET Alex
     - PERARD Doriane
     - SCHLOTTERBECK Guillaume
-	- Poulpi
+    - Poulpi
