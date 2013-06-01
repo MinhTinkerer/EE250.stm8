@@ -11,20 +11,37 @@
 
 /**
  * \def TODO_MAXDATALENGTH
- * \brief Donne le nombre maximal d'octets de donnees contenues dans un paquet TODO
+ * \brief Donne le nombre maximal d'octets de donnees contenues dans un paquet TODO.
  */
 #define TODO_MAXDATALENGTH 0xFF
 
 /**
  * \def TODO_ADDRMASK
- * \brief Masque permettant de recuperer les bits formant ADDR_SRC dans le paquet
+ * \brief Masque permettant de recuperer les bits formant ADDR_SRC dans un  paquet TODO.
  */
 #define TODO_ADDRMASK 0xFE
 
 /**
  * \def TODO_CRMASK
-* \brief Masque permettant de recuperer le bit CR du paquet */
+ * \brief Masque permettant de recuperer le bit CR d'un paquet TODO.
+ */
 #define TODO_CRMASK 0x01
+
+/**
+ * \enum TODO_ErrorType
+ * \brief Codes d'erreur
+ */
+typedef enum {
+} TODO_ErrorType;
+
+/**
+ * \enum TODO_PacketState
+ * \brief Etat du paquet : PacketSecured si le paquet est chiffre, PacketUnsecured sinon.
+ */
+typedef enum {
+	PacketUnsecured,
+	PacketSecured
+} TODO_PacketState;
 
 /**
  * \struct TODO_Packet todo.h
