@@ -1,6 +1,6 @@
 /**
  * \file todo.h
- * \brief Prototypes de la bibliotheque TODO
+ * \brief Interface utilisateur du protocole TODO pour le STM8
  * \author Alex NODET
  * \version 0.1
  * \date 3 juin 2013
@@ -8,6 +8,10 @@
 
 #ifndef TODO_H
 #define TODO_H
+
+#include "stm8s.h"
+#include "stm8s_i2c.h"
+
 
 /**
  * \def TODO_MAXDATALENGTH
@@ -17,7 +21,7 @@
 
 /**
  * \def TODO_ADDRMASK
- * \brief Masque permettant de recuperer les bits formant ADDR_SRC dans un  paquet TODO.
+ * \brief Masque permettant de recuperer les bits formant ADDR_SRC dans un paquet TODO.
  */
 #define TODO_ADDRMASK 0xFE
 
@@ -28,10 +32,34 @@
 #define TODO_CRMASK 0x01
 
 /**
+ * \def TODO_ADDROFFSET
+ * \brief Localisation de ADDR_SRC par rapport au debut d'un paquet TODO.
+ */
+#define TODO_ADDROFFSET 0x00
+
+/**
+ * \def TODO_LENGTHOFFSET
+ * \brief Localisation de LENGTH par rapport au debut d'un paquet TODO.
+ */
+#define TODO_LENGTHOFFSET 0x01
+
+/**
+ * \def TODO_DATAOFFSET
+ * \brief Localisation de DATA par rapport au debut d'un paquet TODO.
+ */
+#define TODO_DATAOFFSET 0x03
+
+/**
  * \enum TODO_ErrorType
  * \brief Codes d'erreur
  */
 typedef enum {
+	NoError,			/*!< Pas d'erreur */
+	PacketIsEmpty,		/*!< Le paquet ne contient pas de donnees */
+	NoPacket,			/*!< Le pointeur sur paquet passe en parametre est nul */
+	NullParameter,		/*!< Le second parametre est nul */
+	BadDataAllocation,	/*!< Erreur d'allocation memoire */
+	ReceptBufferIsNull	/*!< Le pointeur du buffer de reception est nul */
 } TODO_ErrorType;
 
 /**
@@ -39,8 +67,8 @@ typedef enum {
  * \brief Etat du paquet : PacketSecured si le paquet est chiffre, PacketUnsecured sinon.
  */
 typedef enum {
-	PacketUnsecured,
-	PacketSecured
+	PacketUnsecured,	/*!< Le bit CR du paquet indique que les donnees ne sont pas chiffrees */
+	PacketSecured		/*!< Le bit CR du paquet indique que les donnees sont chiffrees */
 } TODO_PacketState;
 
 /**
@@ -56,14 +84,14 @@ typedef struct {
 void TODO_DeInit(void);
 void TODO_Init(u8 addr);
 
-TODO_Packet* TODO_CreatePacket(const u8 *data, u8 len);
-TODO_Packet* TODO_CreateSecurePacket(const u8 *data, u8 len, u8 key);
+TODO_ErrorType TODO_FillPacket(TODO_Packet* packet, const u8 *data, u8 len);
+TODO_ErrorType TODO_FillSecurePacket(TODO_Packet* packet, const u8 *unsecureData, u8 len, u8 key);
 
-TODO_Packet* TODO_ExtractPacket(const u8 *buff, u8 len);
-void TODO_UncryptPacket(TODO_Packet* securePacket, u8 key);
-u8 TODO_IsPacketSecured(TODO_Packet* packet);
+TODO_ErrorType TODO_ExtractPacket(TODO_Packet* packet, const u8 *buff);
+TODO_ErrorType TODO_UncryptPacket(TODO_Packet* securePacket, u8 key);
+TODO_ErrorType TODO_IsPacketSecured(TODO_Packet* packet, TODO_PacketState* state);
 
-u8 TODO_Send(const TODO_Packet* packet);
-u8 TODO_Recv(u8 buffer*, u8 len);
+TODO_ErrorType TODO_Send(const TODO_Packet* packet, u8 destAddress);
+TODO_ErrorType TODO_Recv(u8 *buffer);
 
 #endif
