@@ -181,6 +181,8 @@ TODO_ErrorType TODO_IsPacketSecured(TODO_Packet* packet, TODO_PacketState* state
  * \fn TODO_ErrorType TODO_Send(const TODO_Packet* packet, u8 destAddress)
  * \brief Envoie un paquet TODO sur le bus I2C.
  *
+ * \attention Methode bloquante jusqu'a ce que le paquet soit entierement envoye.
+ *
  * \param packet Paquet a envoyer.
  * \param destAddress Adresse du destinataire.
  * \return NoPacket si packet est nul, NoError sinon.
@@ -222,7 +224,7 @@ TODO_ErrorType TODO_Send(const TODO_Packet* packet, u8 destAddress) {
  *
  * Recoit des donnees structurees selon le protocole TODO depuis le bus I2C et les place dans un buffer de reception.
  *
- * \attention Methode bloquante tant que les octets de donnees n'ont pas tous ete recus.
+ * \attention Methode bloquante tant que le paquet n'a pas ete entierement recu.
  *
  * \param buffer Pointeur sur le buffer de reception.
  * \return ReceptBufferIsNull si buffer est nul, NoError sinon.

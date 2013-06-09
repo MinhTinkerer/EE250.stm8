@@ -1,6 +1,6 @@
 /**
  * \file todo.h
- * \brief Interface utilisateur du protocole TODO pour le STM8
+ * \brief Interface utilisateur du protocole TODO pour le STM8S105C6.
  * \author Alex NODET
  * \version 0.1
  * \date 3 juin 2013
