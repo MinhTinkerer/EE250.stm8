@@ -38,7 +38,11 @@ void TODO_Init(u8 addr) {
  * L'adresse source utilisee est celle indiquee a TODO_Init. 
  * Positionne le bit de poids faible du membre addr de packet a 0.
  *
- * Si data ou len est nul, le paquet sera valide et ne contiendra pas de donnees. 
+ * Si data ou len est nul, le paquet sera valide mais sera vide.
+ * Un paquet vide a les proprietes suivantes :
+ * 		- addr = 0
+ * 		- len = 0
+ * 		- data = NULL
  *
  * \attention Les donnees sont incluses telles quelles dans le paquet. Utilisez TODO_FillSecurePacket pour chiffrer les donnees.
  *
@@ -53,16 +57,17 @@ TODO_ErrorType TODO_FillPacket(TODO_Packet* packet, const u8 *data, u8 len) {
 	if(packet == NULL) {
 		return NoPacket;
 	}
-
-	packet->addr = I2C->OARL & (u8)(~TODO_CRMASK);
 	
 	if(data == NULL || len == 0) {
+		packet->addr = 0;
 		packet->len = 0;
 		packet->data = NULL;
 		return PacketIsEmpty;
 	}
 
+	packet->addr = I2C->OARL & (u8)(~TODO_CRMASK);
 	packet->len = len;
+	
 	packet->data = (u8*)malloc(len * sizeof(u8));
 	if(packet->data == NULL) {
 		return BadDataAllocation;
@@ -84,7 +89,11 @@ TODO_ErrorType TODO_FillPacket(TODO_Packet* packet, const u8 *data, u8 len) {
  * Chiffre les donnees grace a la clef de chiffrement passee en parametre.
  * Positionne le bit de poids faible du membre addr de packet a 1.
  *
- * Si data ou len est nul, le paquet sera valide et ne contiendra pas de donnees.
+ * Si data ou len est nul, le paquet sera valide mais sera vide.
+ * Un paquet vide a les proprietes suivantes :
+ * 		- addr = 0
+ * 		- len = 0
+ * 		- data = NULL
  *
  * \param packet Pointeur sur le paquet a remplir.
  * \param unsecureData Pointeur sur le premier octet de donnees a chiffrer.
@@ -118,13 +127,15 @@ TODO_ErrorType TODO_ExtractPacket(TODO_Packet* packet, const u8 *buff) {
 		return NullParameter;
 	}
 
-	packet->addr = buff[TODO_ADDROFFSET];	
 	packet->len = buff[TODO_LENGTHOFFSET];
 	
 	if(packet->len == 0) {
+		packet->addr = 0;
 		packet->data = NULL;
 		return PacketIsEmpty;
 	}
+	
+	packet->addr = buff[TODO_ADDROFFSET];
 
 	packet->data = (u8*)malloc(packet->len * sizeof(u8));
 	if(packet->data == NULL) {

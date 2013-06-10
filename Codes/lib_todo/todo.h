@@ -19,6 +19,8 @@
  */
 #define TODO_MAXDATALENGTH 0xFF
 
+#define TODO_MAXPACKETLENGTH TODO_MAXDATALENGTH+3
+
 /**
  * \def TODO_ADDRMASK
  * \brief Masque permettant de recuperer les bits formant ADDR_SRC dans un paquet TODO.
@@ -54,12 +56,13 @@
  * \brief Codes d'erreur
  */
 typedef enum {
-	NoError,			/*!< Pas d'erreur */
-	PacketIsEmpty,		/*!< Le paquet ne contient pas de donnees */
-	NoPacket,			/*!< Le pointeur sur paquet passe en parametre est nul */
-	NullParameter,		/*!< Le second parametre est nul */
-	BadDataAllocation,	/*!< Erreur d'allocation memoire */
-	ReceptBufferIsNull	/*!< Le pointeur du buffer de reception est nul */
+	NoError,			/*!< Pas d'erreur. */
+	PacketIsEmpty,		/*!< Le paquet ne contient pas de donnees. */
+	NoPacket,			/*!< Le pointeur sur paquet passe en parametre est nul. */
+	NullParameter,		/*!< Le second parametre est nul. */
+	BadDataAllocation,	/*!< Erreur d'allocation memoire. */
+	ReceptBufferIsNull,	/*!< Le pointeur du buffer de reception est nul. */
+	BadSizedPacket,		/*!< Le champ length du TODO_Packet ne correspond pas au nombre de donnees contenues. */
 } TODO_ErrorType;
 
 /**
@@ -67,19 +70,33 @@ typedef enum {
  * \brief Etat du paquet : PacketSecured si le paquet est chiffre, PacketUnsecured sinon.
  */
 typedef enum {
-	PacketUnsecured,	/*!< Le bit CR du paquet indique que les donnees ne sont pas chiffrees */
-	PacketSecured		/*!< Le bit CR du paquet indique que les donnees sont chiffrees */
+	PacketUnsecured,	/*!< Le bit CR du paquet indique que les donnees ne sont pas chiffrees. */
+	PacketSecured		/*!< Le bit CR du paquet indique que les donnees sont chiffrees. */
 } TODO_PacketState;
+
+typedef enum {
+	NewTODOPacket = 0x01,
+	DataOverflow = 0x02
+} TODO_Flag;
 
 /**
  * \struct TODO_Packet todo.h
- * \brief Decrit le paquet TODO
+ * \brief Decrit le paquet TODO.
  */
 typedef struct {
-	u8 addr;	/*!< Adresse source et bit de chiffrement */
-	u8 length;	/*!< Nombre d'octets de donnees */
-	u8 *data;	/*!< Pointeur sur le premier octet de donnees */
+	u8 addr;			/*!< Adresse source et bit de chiffrement. */
+	u8 length;			/*!< Nombre d'octets de donnees. */
+	u8 *data;			/*!< Pointeur sur le premier octet de donnees. */
 } TODO_Packet;
+
+typedef struct TODO_ReceivedRawPacket TODO_ReceivedRawPacket;
+struct TODO_ReceivedRawPacket {
+	u8 *buffer;
+	TODO_ReceivedRawPacket *next;
+};
+
+typedef TODO_ReceivedRawPacket* TODO_PacketFile;
+
 
 void TODO_DeInit(void);
 void TODO_Init(u8 addr);
@@ -93,5 +110,15 @@ TODO_ErrorType TODO_IsPacketSecured(TODO_Packet* packet, TODO_PacketState* state
 
 TODO_ErrorType TODO_Send(const TODO_Packet* packet, u8 destAddress);
 TODO_ErrorType TODO_Recv(u8 *buffer);
+
+
+static void addPacket(u8* buf);
+static TODO_ReceivedRawPacket* defilePacket(void);
+static void freePacketFile(TODO_PacketFile tete);
+void TODO_ReceiveITHandler(void);
+void TODO_StopITHandler(void);
+FlagStatus TODO_GetFlagState(TODO_Flag flag);
+void TODO_ClearFlag(TODO_Flag flag);
+TODO_ErrorType TODO_AsyncRecv(TODO_Packet *receivedPacket);
 
 #endif
