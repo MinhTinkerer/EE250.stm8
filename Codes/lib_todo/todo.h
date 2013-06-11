@@ -84,18 +84,18 @@ typedef enum {
  * \brief Decrit le paquet TODO.
  */
 typedef struct {
-	u8 addr;			/*!< Adresse source et bit de chiffrement. */
-	u8 length;			/*!< Nombre d'octets de donnees. */
-	u8 *data;			/*!< Pointeur sur le premier octet de donnees. */
+	u8 addr;		/*!< Adresse source et bit de chiffrement. */
+	u8 length;		/*!< Nombre d'octets de donnees. */
+	u8 *data;		/*!< Pointeur sur le premier octet de donnees. */
 } TODO_Packet;
 
 typedef struct TODO_ReceivedRawPacket TODO_ReceivedRawPacket;
 struct TODO_ReceivedRawPacket {
-	u8 *buffer;
+	u8 *rawPacket;
 	TODO_ReceivedRawPacket *next;
 };
 
-typedef TODO_ReceivedRawPacket* TODO_PacketFile;
+typedef TODO_ReceivedRawPacket* TODO_RawPacketFile;
 
 
 void TODO_DeInit(void);
@@ -111,14 +111,16 @@ TODO_ErrorType TODO_IsPacketSecured(TODO_Packet* packet, TODO_PacketState* state
 TODO_ErrorType TODO_Send(const TODO_Packet* packet, u8 destAddress);
 TODO_ErrorType TODO_Recv(u8 *buffer);
 
+TODO_ErrorType TODO_AsyncRecv(TODO_Packet *receivedPacket);
 
-static void addPacket(u8* buf);
-static TODO_ReceivedRawPacket* defilePacket(void);
-static void freePacketFile(TODO_PacketFile tete);
+static void addRawPacket(u8* buf);
+static TODO_ReceivedRawPacket* defileRawPacket(void);
+static void freeRawPacketFile(TODO_RawPacketFile tete);
+
 void TODO_ReceiveITHandler(void);
 void TODO_StopITHandler(void);
+
 FlagStatus TODO_GetFlagState(TODO_Flag flag);
 void TODO_ClearFlag(TODO_Flag flag);
-TODO_ErrorType TODO_AsyncRecv(TODO_Packet *receivedPacket);
 
 #endif
