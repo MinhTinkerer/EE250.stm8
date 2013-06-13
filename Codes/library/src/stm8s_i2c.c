@@ -604,7 +604,7 @@ void I2C_ClearFlag(I2C_Flag_TypeDef Flag)
    /* Clear the flag directly in the SR2 register */
   if(tmp3 == 0x0100)
   {
-	/* Clear the selected I2C flag */
+    /* Clear the selected I2C flag */
       I2C->SR2 = (u8)(~(u8)Flag);
   }
   /* Flags that need a read of SR1 register and a dummy write in CR2 register to be cleared */
@@ -618,7 +618,7 @@ void I2C_ClearFlag(I2C_Flag_TypeDef Flag)
   /* Flags that need a read of SR1 register followed by a read of SR3 register to be cleared */
   else if(tmp3 == 0x0300)
   {
-	  /* 2 variables are used to avoid any compiler optimization */
+      /* 2 variables are used to avoid any compiler optimization */
       /* Read the SR1 register */
       tmp1 = I2C->SR1;
       /* Read the SR3 register */
@@ -640,7 +640,7 @@ void I2C_ClearFlag(I2C_Flag_TypeDef Flag)
   * @param[in] ITPendingBit : Specifies the flag to read
   * This parameter can be any of the  @ref I2C_ITPendingBit_TypeDef enumeration.
   * @retval ITStatus : Status of the pending bit.
-	* This parameter can be any of the @ref ITStatus enumeration.
+    * This parameter can be any of the @ref ITStatus enumeration.
   */
 ITStatus I2C_GetITStatus(I2C_ITPendingBit_TypeDef ITPendingBit)
 {
@@ -715,7 +715,7 @@ void I2C_ClearITPendingBit(I2C_ITPendingBit_TypeDef ITPendingBit)
   /* Clear the flag directly in the SR2 register */
   if(tmp3 == 0x0100)
   {
-	/* Clear the selected I2C flag */
+    /* Clear the selected I2C flag */
       I2C->SR2 = (u8)(~(u8)ITPendingBit);
   }
   /* Flags that need a read of SR1 register and a dummy write in CR2 register to be cleared */
@@ -729,7 +729,7 @@ void I2C_ClearITPendingBit(I2C_ITPendingBit_TypeDef ITPendingBit)
   /* Flags that need a read of SR1 register followed by a read of SR3 register to be cleared */
   else if(tmp3 == 0x0300)
   {
-	  /* 2 variables are used to avoid any compiler optimization */
+      /* 2 variables are used to avoid any compiler optimization */
       /* Read the SR1 register */
       tmp1 = I2C->SR1;
       /* Read the SR3 register */

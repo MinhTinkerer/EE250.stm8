@@ -459,7 +459,7 @@ void CAN_FilterInit(CAN_FilterNumber_TypeDef CAN_FilterNumber,
     if (CAN_FilterActivation != DISABLE)
     {
         if ((CAN_FilterNumber & 0x06) == 0x00) /* FCR1*/
-        { 	CAN->Page.Config.FCR1 |= (u8)fact;
+        {     CAN->Page.Config.FCR1 |= (u8)fact;
         }
         else if ((CAN_FilterNumber & 0x06) == 0x02) /*FCR2*/
         { CAN->Page.Config.FCR2 |= (u8)fact;
@@ -572,10 +572,10 @@ void CAN_TTComModeCmd(FunctionalState NewState)
 /**
   * @brief Initiates the transmission of a message.
   * @param[in] CAN_Id the ID number of the message, its size depends on @ref CAN_IDE value.
-	* @param[in] CAN_IDE the ID type of the message, this parameter can be one of the @ref CAN_Id_TypeDef enumeration.
-	* @param[in] CAN_RTR the message type, this parameter can be one of the @ref CAN_RTR_TypeDef enumeration.
-	* @param[in] CAN_DLC the number of data in the message type, this parameter can be a value between 0 to 7.
-	* @param[in] CAN_Data pointer to a the @ref u8 table which contains data to sent.
+    * @param[in] CAN_IDE the ID type of the message, this parameter can be one of the @ref CAN_Id_TypeDef enumeration.
+    * @param[in] CAN_RTR the message type, this parameter can be one of the @ref CAN_RTR_TypeDef enumeration.
+    * @param[in] CAN_DLC the number of data in the message type, this parameter can be a value between 0 to 7.
+    * @param[in] CAN_Data pointer to a the @ref u8 table which contains data to sent.
   * @retval Transmit Status, this returned value can be one of the @ref CAN_TxStatus_TypeDef enumeration.
   */
 CAN_TxStatus_TypeDef CAN_Transmit(u32 CAN_Id,
@@ -1004,7 +1004,7 @@ void CAN_SelectClock(CAN_ClockSource_TypeDef CAN_ClockSource)
 /**
   * @brief Select the CAN Operation mode.
   * @param[in] CAN_OperatingMode CAN Operating Mode ,
-	* this parameter can be one of @ref CAN_OperatingMode_TypeDef enumeration.
+    * this parameter can be one of @ref CAN_OperatingMode_TypeDef enumeration.
   * @retval None
   */
 CAN_ModeStatus_TypeDef CAN_OperatingModeRequest(CAN_OperatingMode_TypeDef CAN_OperatingMode)
@@ -1101,13 +1101,13 @@ CAN_ErrorCode_TypeDef CAN_GetLastErrorCode(void)
 /**
   * @brief Clears the CAN's pending flags.
   * @param[in] CAN_FLAG : Flag to be cleared, can be one of the folowing parameters:
-  *						CAN_FLAG_RQCP0            Request MailBox0  Flag
-  *						CAN_FLAG_RQCP1            Request MailBox1  Flag
-  *						CAN_FLAG_RQCP2            Request MailBox2  Flag
-  *						CAN_FLAG_FF               FIFO Full  Flag
-  *						CAN_FLAG_FOV              FIFO Overrun  Flag
-  *						CAN_FLAG_WKU              wake up   Flag
-  *						CAN_FLAG_LEC               Last error code Flag
+  *                        CAN_FLAG_RQCP0            Request MailBox0  Flag
+  *                        CAN_FLAG_RQCP1            Request MailBox1  Flag
+  *                        CAN_FLAG_RQCP2            Request MailBox2  Flag
+  *                        CAN_FLAG_FF               FIFO Full  Flag
+  *                        CAN_FLAG_FOV              FIFO Overrun  Flag
+  *                        CAN_FLAG_WKU              wake up   Flag
+  *                        CAN_FLAG_LEC               Last error code Flag
   * @retval None
   */
 void CAN_ClearFlag(CAN_Flag_TypeDef CAN_Flag)
@@ -1369,16 +1369,16 @@ ITStatus CAN_GetITStatus(CAN_IT_TypeDef CAN_IT)
 /**
   * @brief  Clears the CAN’s interrupt pending bits.
   * @param[in] CAN_IT: specifies the interrupt pending bit to clear,
-  *	can be one of the following parameters:
+  *    can be one of the following parameters:
   *                            CAN_IT_TME = Transmit mailbox empty interrupt
-  *												     CAN_IT_FF =FIFO  full    interrupt
+  *                                                     CAN_IT_FF =FIFO  full    interrupt
   *                            CAN_IT_FOV =FIFO  overrun  interrupt
-  *														 CAN_IT_WKU =Wake-up interrupt
-  *														 CAN_IT_ERR =Genaral Error interrupt
-  *														 CAN_IT_EWG =Error warning interrupt
-  *														 CAN_IT_EPV  =Error passive  interrupt
-  *														 CAN_IT_BOF = Bus-off   interrupt
-  *														 CAN_IT_LEC  =Last error code interrupt
+  *                                                         CAN_IT_WKU =Wake-up interrupt
+  *                                                         CAN_IT_ERR =Genaral Error interrupt
+  *                                                         CAN_IT_EWG =Error warning interrupt
+  *                                                         CAN_IT_EPV  =Error passive  interrupt
+  *                                                         CAN_IT_BOF = Bus-off   interrupt
+  *                                                         CAN_IT_LEC  =Last error code interrupt
   * @retval None
   */
 void CAN_ClearITPendingBit(CAN_IT_TypeDef CAN_IT)

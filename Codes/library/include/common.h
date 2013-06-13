@@ -9,7 +9,7 @@
 #ifndef COMMON_H
 #define COMMON_H
 
-#include <stm8s.h>
+#include "stm8s.h"
 
 
 #define RESET 0x00

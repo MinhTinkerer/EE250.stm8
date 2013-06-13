@@ -508,7 +508,7 @@ void TIM1_PWMIConfig(TIM1_Channel_TypeDef TIM1_Channel,
 /**
   * @brief Enables or disables the TIM1 peripheral.
   * @param[in] NewState new state of the TIM1 peripheral.
-	* This parameter can be ENABLE or DISABLE.
+    * This parameter can be ENABLE or DISABLE.
   * @retval None
   */
 void TIM1_Cmd(FunctionalState NewState)
@@ -531,7 +531,7 @@ void TIM1_Cmd(FunctionalState NewState)
 /**
   * @brief Enables or disables the TIM1 peripheral Main Outputs.
   * @param[in] NewState new state of the TIM1 peripheral.
-	* This parameter can be ENABLE or DISABLE.
+    * This parameter can be ENABLE or DISABLE.
   * @retval None
   */
 void TIM1_CtrlPWMOutputs(FunctionalState NewState)
@@ -926,9 +926,9 @@ void TIM1_SelectMasterSlaveMode(FunctionalState NewState)
   * @param[in] TIM1_EncoderMode specifies the TIM1 Encoder Mode.
   * This parameter can be one of the following values
   * - TIM1_ENCODERMODE_TI1: Counter counts on TI1FP1 edge
-	* depending on TI2FP2 level.
+    * depending on TI2FP2 level.
   * - TIM1_ENCODERMODE_TI2: Counter counts on TI2FP2 edge
-  *	depending on TI1FP1 level.
+  *    depending on TI1FP1 level.
   * - TIM1_ENCODERMODE_TI12: Counter counts on both TI1FP1 and
   * TI2FP2 edges depending on the level of the other input.
   * @param[in] TIM1_IC1Polarity specifies the IC1 Polarity.

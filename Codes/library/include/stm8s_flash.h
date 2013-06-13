@@ -116,11 +116,11 @@ FLASH_LPMode_TypeDef;
   * @brief FLASH status of the last operation
   */
 typedef enum {
-	#if defined (STM8S208) || defined(STM8S207) || defined(STM8S105)		
-		FLASH_STATUS_END_HIGH_VOLTAGE  = (u8)0x40, /*!< End of high voltage */
-	#endif /* STM8S208, STM8S207, STM8S105 */
-		FLASH_STATUS_SUCCESSFUL_OPERATION   = (u8)0x04, /*!< End of operation flag */
-		FLASH_STATUS_TIMEOUT = (u8)0x02, /*!< Time out error */
+    #if defined (STM8S208) || defined(STM8S207) || defined(STM8S105)        
+        FLASH_STATUS_END_HIGH_VOLTAGE  = (u8)0x40, /*!< End of high voltage */
+    #endif /* STM8S208, STM8S207, STM8S105 */
+        FLASH_STATUS_SUCCESSFUL_OPERATION   = (u8)0x04, /*!< End of operation flag */
+        FLASH_STATUS_TIMEOUT = (u8)0x02, /*!< Time out error */
     FLASH_STATUS_WRITE_PROTECTION_ERROR = (u8)0x01 /*!< Write attempted to protected page */
 } FLASH_Status_TypeDef;
 

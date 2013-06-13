@@ -38,7 +38,7 @@
   */
 
 /**
-	* @brief Deinitializes the UART3 peripheral.
+    * @brief Deinitializes the UART3 peripheral.
   * @par Full description:
   * Set the UART3 peripheral registers to their default reset values.
   * @retval

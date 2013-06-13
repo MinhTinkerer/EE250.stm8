@@ -128,8 +128,8 @@ void FLASH_ITConfig(FunctionalState NewState)
   * @retval
   * None.
   * @par Required preconditions:
-	* PointerAttr define is declared in the stm8s.h file to select if pointer will be declared
-  *	as near (2 bytes) or far (3 bytes).
+    * PointerAttr define is declared in the stm8s.h file to select if pointer will be declared
+  *    as near (2 bytes) or far (3 bytes).
 */
 void FLASH_EraseByte(u32 Address)
 {
@@ -146,8 +146,8 @@ void FLASH_EraseByte(u32 Address)
   * @retval
   * None.
   * @par Required preconditions:
-	* PointerAttr define is declared in the stm8s.h file to select if pointer will be declared
-  *	as near (2 bytes) or far (3 bytes).
+    * PointerAttr define is declared in the stm8s.h file to select if pointer will be declared
+  *    as near (2 bytes) or far (3 bytes).
   */
 void FLASH_ProgramByte(u32 Address, u8 Data)
 {
@@ -161,8 +161,8 @@ void FLASH_ProgramByte(u32 Address, u8 Data)
   * @param[in] Address Address to read
   * @retval u8 Value read
   * @par Required preconditions:
-	* PointerAttr define is declared in the stm8s.h file to select if pointer will be declared
-  *	as near (2 bytes) or far (3 bytes).
+    * PointerAttr define is declared in the stm8s.h file to select if pointer will be declared
+  *    as near (2 bytes) or far (3 bytes).
   */
 u8 FLASH_ReadByte(u32 Address)
 {
@@ -178,8 +178,8 @@ u8 FLASH_ReadByte(u32 Address)
   * @retval
   * None.
   * @par Required preconditions:
-	* PointerAttr define is declared in the stm8s.h file to select if pointer will be declared
-  *	as near (2 bytes) or far (3 bytes).
+    * PointerAttr define is declared in the stm8s.h file to select if pointer will be declared
+  *    as near (2 bytes) or far (3 bytes).
   */
 void FLASH_ProgramWord(u32 Address, u32 Data)
 {
@@ -430,7 +430,7 @@ FLASH_Status_TypeDef FLASH_WaitForLastOperation(FLASH_MemType_TypeDef MemType)
     return((FLASH_Status_TypeDef)flagstatus);
 }
 /* *****************************************************************************************/
-/*                    Uncomment the line below to use these functions 	                   */
+/*                    Uncomment the line below to use these functions                        */
 /*                                                                                         */
 /* *****************************************************************************************/
 /* LINKER SECTIONS DEFINITION FOR THIS FILE ONLY */
@@ -451,8 +451,8 @@ FLASH_Status_TypeDef FLASH_WaitForLastOperation(FLASH_MemType_TypeDef MemType)
   * None.
   * @par Required preconditions:
   * The FLASH_EraseBlock function should be executed from RAM.
-	* PointerAttr define is declared in the stm8s.h file to select if pointer will be declared
-  *	as near (2 bytes) or far (3 bytes).
+    * PointerAttr define is declared in the stm8s.h file to select if pointer will be declared
+  *    as near (2 bytes) or far (3 bytes).
   */
 void FLASH_EraseBlock(u16 BlockNum, FLASH_MemType_TypeDef MemType)
 {
@@ -498,7 +498,7 @@ void FLASH_EraseBlock(u16 BlockNum, FLASH_MemType_TypeDef MemType)
     FLASH->NCR2 &= (u8)(~FLASH_NCR2_NERASE);
 
     *pwFlash = (u32)0;
-#endif	/*PointerAttr_Far*/
+#endif    /*PointerAttr_Far*/
 
 #if defined (STM8S208) || defined(STM8S207) || defined(STM8S105)
     /* Waiting until High voltage flag is cleared*/
@@ -519,8 +519,8 @@ void FLASH_EraseBlock(u16 BlockNum, FLASH_MemType_TypeDef MemType)
   * None.
   * @par Required preconditions:
   * The FLASH_ProgramBlock function should be executed from RAM.
-	* PointerAttr define is declared in the stm8s.h file to select if pointer will be declared
-  *	as near (2 bytes) or far (3 bytes).
+    * PointerAttr define is declared in the stm8s.h file to select if pointer will be declared
+  *    as near (2 bytes) or far (3 bytes).
   */
 void FLASH_ProgramBlock(u16 BlockNum, FLASH_MemType_TypeDef MemType, FLASH_ProgramMode_TypeDef ProgMode, u8 *Buffer)
 {
