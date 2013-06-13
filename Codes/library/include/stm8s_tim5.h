@@ -42,40 +42,40 @@ typedef enum
 /** TIM5 Prescaler */
 typedef enum
 {
-    TIM5_PRESCALER_1		=((u8)0x00),
-    TIM5_PRESCALER_2   	=((u8)0x01),
-    TIM5_PRESCALER_4   	=((u8)0x02),
-    TIM5_PRESCALER_8	   	=((u8)0x03),
-    TIM5_PRESCALER_16  	=((u8)0x04),
-    TIM5_PRESCALER_32    	=((u8)0x05),
-    TIM5_PRESCALER_64   	=((u8)0x06),
-    TIM5_PRESCALER_128  	=((u8)0x07),
-    TIM5_PRESCALER_256  	=((u8)0x08),
-    TIM5_PRESCALER_512  	=((u8)0x09),
-    TIM5_PRESCALER_1024 	=((u8)0x0A),
-    TIM5_PRESCALER_2048	=((u8)0x0B),
+    TIM5_PRESCALER_1        =((u8)0x00),
+    TIM5_PRESCALER_2       =((u8)0x01),
+    TIM5_PRESCALER_4       =((u8)0x02),
+    TIM5_PRESCALER_8           =((u8)0x03),
+    TIM5_PRESCALER_16      =((u8)0x04),
+    TIM5_PRESCALER_32        =((u8)0x05),
+    TIM5_PRESCALER_64       =((u8)0x06),
+    TIM5_PRESCALER_128      =((u8)0x07),
+    TIM5_PRESCALER_256      =((u8)0x08),
+    TIM5_PRESCALER_512      =((u8)0x09),
+    TIM5_PRESCALER_1024     =((u8)0x0A),
+    TIM5_PRESCALER_2048    =((u8)0x0B),
     TIM5_PRESCALER_4096   =((u8)0x0C),
-    TIM5_PRESCALER_8192	=((u8)0x0D),
-    TIM5_PRESCALER_16384	=((u8)0x0E),
-    TIM5_PRESCALER_32768	=((u8)0x0F)
+    TIM5_PRESCALER_8192    =((u8)0x0D),
+    TIM5_PRESCALER_16384    =((u8)0x0E),
+    TIM5_PRESCALER_32768    =((u8)0x0F)
 }TIM5_Prescaler_TypeDef;
 
-#define IS_TIM5_PRESCALER_OK(PRESCALER) (((PRESCALER) == TIM5_PRESCALER_1		) || \
-							   ((PRESCALER) == TIM5_PRESCALER_2   	) || \
-							   ((PRESCALER) == TIM5_PRESCALER_4   	) || \
-							   ((PRESCALER) == TIM5_PRESCALER_8		) || \
-							   ((PRESCALER) == TIM5_PRESCALER_16  	) || \
-							   ((PRESCALER) == TIM5_PRESCALER_32    	) || \
-							   ((PRESCALER) == TIM5_PRESCALER_64   	) || \
-							   ((PRESCALER) == TIM5_PRESCALER_128  	) || \
-							   ((PRESCALER) == TIM5_PRESCALER_256  	) || \
-							   ((PRESCALER) == TIM5_PRESCALER_512  	) || \
-							   ((PRESCALER) == TIM5_PRESCALER_1024 	) || \
-							   ((PRESCALER) == TIM5_PRESCALER_2048	) || \
-							   ((PRESCALER) == TIM5_PRESCALER_4096	) || \
-							   ((PRESCALER) == TIM5_PRESCALER_8192	) || \
-							   ((PRESCALER) == TIM5_PRESCALER_16384	) || \
-							   ((PRESCALER) == TIM5_PRESCALER_32768	))
+#define IS_TIM5_PRESCALER_OK(PRESCALER) (((PRESCALER) == TIM5_PRESCALER_1        ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_2       ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_4       ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_8        ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_16      ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_32        ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_64       ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_128      ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_256      ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_512      ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_1024     ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_2048    ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_4096    ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_8192    ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_16384    ) || \
+                               ((PRESCALER) == TIM5_PRESCALER_32768    ))
 
 /** TIM5 Output Compare and PWM modes */
 typedef enum
@@ -100,7 +100,7 @@ typedef enum
                           ((MODE) == TIM5_OCMODE_INACTIVE) || \
                           ((MODE) == TIM5_OCMODE_TOGGLE)|| \
                           ((MODE) == TIM5_OCMODE_PWM1) || \
-                          ((MODE) == TIM5_OCMODE_PWM2) ||	\
+                          ((MODE) == TIM5_OCMODE_PWM2) ||    \
                           ((MODE) == TIM5_FORCEDACTION_ACTIVE) || \
                           ((MODE) == TIM5_FORCEDACTION_INACTIVE))
 
@@ -198,7 +198,7 @@ typedef enum
     TIM5_IT_CC1                        =((u8)0x02),
     TIM5_IT_CC2                        =((u8)0x04),
     TIM5_IT_CC3                        =((u8)0x08),
-		TIM5_IT_TRIGGER                   = ((u8)0x40)
+        TIM5_IT_TRIGGER                   = ((u8)0x40)
 }TIM5_IT_TypeDef;
 
 #define IS_TIM5_IT_OK(IT) (((IT) != 0x00) && ((IT) <= 0x4F))
@@ -206,7 +206,7 @@ typedef enum
 #define IS_TIM5_GET_IT_OK(IT) (((IT) == TIM5_IT_UPDATE) || \
                             ((IT) == TIM5_IT_CC1) || \
                             ((IT) == TIM5_IT_CC2) || \
-														((IT) == TIM5_IT_CC3) || \
+                                                        ((IT) == TIM5_IT_CC3) || \
                             ((IT) == TIM5_IT_TRIGGER))
 
 /** TIM5 Prescaler Reload Mode */
@@ -226,7 +226,7 @@ typedef enum
     TIM5_EVENTSOURCE_CC1               =((u8)0x02),
     TIM5_EVENTSOURCE_CC2               =((u8)0x04),
     TIM5_EVENTSOURCE_CC3               =((u8)0x08),
-		TIM5_EVENTSOURCE_TRIGGER           = ((u8)0x40)
+        TIM5_EVENTSOURCE_TRIGGER           = ((u8)0x40)
 }TIM5_EventSource_TypeDef;
 
 #define IS_TIM5_EVENT_SOURCE_OK(SOURCE) ((SOURCE != 0x00))
@@ -247,12 +247,12 @@ typedef enum
   */
 typedef enum
 {
-    TIM5_TRGOSOURCE_RESET		= ((u8)0x00), 	/*!< Trigger Output source = Reset*/
-    TIM5_TRGOSOURCE_ENABLE  = ((u8)0x10), 	/*!< Trigger Output source = TIM5 is enabled*/
-    TIM5_TRGOSOURCE_UPDATE  = ((u8)0x20), 	/*!< Trigger Output source = Update event*/
-    TIM5_TRGOSOURCE_OC1     = ((u8)0x30), 	/*!< Trigger Output source = output compare channel1  */
-    TIM5_TRGOSOURCE_OC1REF  = ((u8)0x40), 	/*!< Trigger Output source = output compare channel 1 reference */
-    TIM5_TRGOSOURCE_OC2REF  = ((u8)0x50)  	/*!< Trigger Output source = output compare channel 2 reference */
+    TIM5_TRGOSOURCE_RESET        = ((u8)0x00),     /*!< Trigger Output source = Reset*/
+    TIM5_TRGOSOURCE_ENABLE  = ((u8)0x10),     /*!< Trigger Output source = TIM5 is enabled*/
+    TIM5_TRGOSOURCE_UPDATE  = ((u8)0x20),     /*!< Trigger Output source = Update event*/
+    TIM5_TRGOSOURCE_OC1     = ((u8)0x30),     /*!< Trigger Output source = output compare channel1  */
+    TIM5_TRGOSOURCE_OC1REF  = ((u8)0x40),     /*!< Trigger Output source = output compare channel 1 reference */
+    TIM5_TRGOSOURCE_OC2REF  = ((u8)0x50)      /*!< Trigger Output source = output compare channel 2 reference */
 }TIM5_TRGOSource_TypeDef;
 
 /**
@@ -265,7 +265,7 @@ typedef enum
     ((SOURCE) == TIM5_TRGOSOURCE_OC1)    || \
     ((SOURCE) == TIM5_TRGOSOURCE_OC1REF) || \
     ((SOURCE) == TIM5_TRGOSOURCE_OC2REF))
-	
+    
 /** TIM5 Flags */
 typedef enum
 {
@@ -273,7 +273,7 @@ typedef enum
     TIM5_FLAG_CC1                      =((u16)0x0002),
     TIM5_FLAG_CC2                      =((u16)0x0004),
     TIM5_FLAG_CC3                      =((u16)0x0008),
-		TIM5_FLAG_TRIGGER                  = ((u16)0x0040),
+        TIM5_FLAG_TRIGGER                  = ((u16)0x0040),
     TIM5_FLAG_CC1OF                    =((u16)0x0200),
     TIM5_FLAG_CC2OF                    =((u16)0x0400),
     TIM5_FLAG_CC3OF                    =((u16)0x0800)
@@ -283,7 +283,7 @@ typedef enum
                                 ((FLAG) == TIM5_FLAG_CC1) || \
                                 ((FLAG) == TIM5_FLAG_CC2) || \
                                 ((FLAG) == TIM5_FLAG_CC3) || \
-																((FLAG) == TIM5_FLAG_TRIGGER) || \
+                                                                ((FLAG) == TIM5_FLAG_TRIGGER) || \
                                 ((FLAG) == TIM5_FLAG_CC1OF) || \
                                 ((FLAG) == TIM5_FLAG_CC2OF) || \
                                 ((FLAG) == TIM5_FLAG_CC3OF))
@@ -296,9 +296,9 @@ typedef enum
   */
 typedef enum
 {
-    TIM5_SLAVEMODE_RESET			= ((u8)0x04), 	/*!< Slave Mode Selection  = Reset*/
-    TIM5_SLAVEMODE_GATED      = ((u8)0x05), 	/*!< Slave Mode Selection  = Gated*/
-    TIM5_SLAVEMODE_TRIGGER    = ((u8)0x06), 	/*!< Slave Mode Selection  = Trigger*/
+    TIM5_SLAVEMODE_RESET            = ((u8)0x04),     /*!< Slave Mode Selection  = Reset*/
+    TIM5_SLAVEMODE_GATED      = ((u8)0x05),     /*!< Slave Mode Selection  = Gated*/
+    TIM5_SLAVEMODE_TRIGGER    = ((u8)0x06),     /*!< Slave Mode Selection  = Trigger*/
     TIM5_SLAVEMODE_EXTERNAL1  = ((u8)0x07)  /*!< Slave Mode Selection  = External 1*/
 }TIM5_SlaveMode_TypeDef;
 
@@ -306,25 +306,25 @@ typedef enum
   * @brief Macro TIM5 Slave mode
   */
 #define IS_TIM5_SLAVE_MODE_OK(MODE) \
-	 (((MODE) == TIM5_SLAVEMODE_RESET)   || \
+     (((MODE) == TIM5_SLAVEMODE_RESET)   || \
     ((MODE) == TIM5_SLAVEMODE_GATED)   || \
     ((MODE) == TIM5_SLAVEMODE_TRIGGER) || \
     ((MODE) == TIM5_SLAVEMODE_EXTERNAL1))
-		
+        
 /**
   * @brief TIM5 Internal Trigger Selection
   */
 typedef enum
 {
-    TIM5_TS_TIM6	= ((u8)0x00), /*!< TRIG Input source =  TIM6 TRIG Output  */
-		TIM5_TS_TIM1	= ((u8)0x03) /*!< TRIG Input source =  TIM1 TRIG Output  */
+    TIM5_TS_TIM6    = ((u8)0x00), /*!< TRIG Input source =  TIM6 TRIG Output  */
+        TIM5_TS_TIM1    = ((u8)0x03) /*!< TRIG Input source =  TIM1 TRIG Output  */
 }TIM5_TS_TypeDef;
 
 /**
   * @brief Macro TIM5  Trigger Selection
   */
 #define IS_TIM5_TRIGGER_SELECTION_OK(SELECTION) \
-	 (((SELECTION) == TIM5_TS_TIM6)  || \
+     (((SELECTION) == TIM5_TS_TIM6)  || \
     ((SELECTION) == TIM5_TS_TIM1)  )
 
 
@@ -339,9 +339,9 @@ typedef enum
   */
 typedef enum
 {
-    TIM5_ENCODERMODE_TI1		= ((u8)0x01), 	/*!< Encoder mode 1*/
-    TIM5_ENCODERMODE_TI2		= ((u8)0x02), 	/*!< Encoder mode 2*/
-    TIM5_ENCODERMODE_TI12		= ((u8)0x03)  	/*!< Encoder mode 3*/
+    TIM5_ENCODERMODE_TI1        = ((u8)0x01),     /*!< Encoder mode 1*/
+    TIM5_ENCODERMODE_TI2        = ((u8)0x02),     /*!< Encoder mode 2*/
+    TIM5_ENCODERMODE_TI12        = ((u8)0x03)      /*!< Encoder mode 3*/
 }TIM5_EncoderMode_TypeDef;
 /**
   * @brief Macro TIM5 encoder mode
@@ -350,16 +350,16 @@ typedef enum
    (((MODE) == TIM5_ENCODERMODE_TI1) || \
     ((MODE) == TIM5_ENCODERMODE_TI2) || \
     ((MODE) == TIM5_ENCODERMODE_TI12))
-		
+        
 /**
   * @brief TIM5 External Trigger Prescaler
   */
 typedef enum
 {
-    TIM5_EXTTRGPSC_OFF	= ((u8)0x00), 	/*!< No External Trigger prescaler  */
-    TIM5_EXTTRGPSC_DIV2	= ((u8)0x10), 	/*!< External Trigger prescaler = 2 (ETRP frequency divided by 2) */
-    TIM5_EXTTRGPSC_DIV4	= ((u8)0x20), 	/*!< External Trigger prescaler = 4 (ETRP frequency divided by 4) */
-    TIM5_EXTTRGPSC_DIV8	= ((u8)0x30)  	/*!< External Trigger prescaler = 8 (ETRP frequency divided by 8) */
+    TIM5_EXTTRGPSC_OFF    = ((u8)0x00),     /*!< No External Trigger prescaler  */
+    TIM5_EXTTRGPSC_DIV2    = ((u8)0x10),     /*!< External Trigger prescaler = 2 (ETRP frequency divided by 2) */
+    TIM5_EXTTRGPSC_DIV4    = ((u8)0x20),     /*!< External Trigger prescaler = 4 (ETRP frequency divided by 4) */
+    TIM5_EXTTRGPSC_DIV8    = ((u8)0x30)      /*!< External Trigger prescaler = 8 (ETRP frequency divided by 8) */
 }TIM5_ExtTRGPSC_TypeDef;
 
 /**
@@ -370,14 +370,14 @@ typedef enum
     ((PRESCALER) == TIM5_EXTTRGPSC_DIV2) || \
     ((PRESCALER) == TIM5_EXTTRGPSC_DIV4) || \
     ((PRESCALER) == TIM5_EXTTRGPSC_DIV8))
-		
+        
 /**
   * @brief TIM5 External Trigger Polarity
   */
 typedef enum
 {
-    TIM5_EXTTRGPOLARITY_INVERTED		= ((u8)0x80), 	/*!< External Trigger Polarity = inverted */
-    TIM5_EXTTRGPOLARITY_NONINVERTED	= ((u8)0x00)  	/*!< External Trigger Polarity = non inverted */
+    TIM5_EXTTRGPOLARITY_INVERTED        = ((u8)0x80),     /*!< External Trigger Polarity = inverted */
+    TIM5_EXTTRGPOLARITY_NONINVERTED    = ((u8)0x00)      /*!< External Trigger Polarity = non inverted */
 }TIM5_ExtTRGPolarity_TypeDef;
 
 /**
@@ -386,7 +386,7 @@ typedef enum
 #define IS_TIM5_EXT_POLARITY_OK(POLARITY) \
    (((POLARITY) == TIM5_EXTTRGPOLARITY_INVERTED) || \
     ((POLARITY) == TIM5_EXTTRGPOLARITY_NONINVERTED))
-		
+        
 /**
   * @brief Macro TIM5 External Trigger Filter
   */

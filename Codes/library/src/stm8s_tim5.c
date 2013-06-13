@@ -64,9 +64,9 @@ void TIM5_DeInit(void)
     TIM5->CCMR3 = (u8)TIM5_CCMR3_RESET_VALUE;
     TIM5->CNTRH = (u8)TIM5_CNTRH_RESET_VALUE;
     TIM5->CNTRL = (u8)TIM5_CNTRL_RESET_VALUE;
-    TIM5->PSCR	= (u8)TIM5_PSCR_RESET_VALUE;
-    TIM5->ARRH 	= (u8)TIM5_ARRH_RESET_VALUE;
-    TIM5->ARRL 	= (u8)TIM5_ARRL_RESET_VALUE;
+    TIM5->PSCR    = (u8)TIM5_PSCR_RESET_VALUE;
+    TIM5->ARRH     = (u8)TIM5_ARRH_RESET_VALUE;
+    TIM5->ARRL     = (u8)TIM5_ARRL_RESET_VALUE;
     TIM5->CCR1H = (u8)TIM5_CCR1H_RESET_VALUE;
     TIM5->CCR1L = (u8)TIM5_CCR1L_RESET_VALUE;
     TIM5->CCR2H = (u8)TIM5_CCR2H_RESET_VALUE;
@@ -1279,7 +1279,7 @@ static void TI3_Config(u8 TIM5_ICPolarity, u8 TIM5_ICSelection,
 /**
   * @brief Enables the TIM5 internal Clock.
   * @par Parameters:
-	* None
+    * None
   * @retval None
   */
 void TIM5_InternalClockConfig(void)

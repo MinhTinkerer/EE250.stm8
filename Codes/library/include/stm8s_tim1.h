@@ -305,8 +305,8 @@ typedef enum
 /** TIM1 Internal Trigger Selection */
 typedef enum
 {
-  TIM1_TS_TIM6	                     = ((u8)0x00),  /*!< TRIG Input source =  TIM6 TRIG Output  */
-	TIM1_TS_TIM5	                     = ((u8)0x30),  /*!< TRIG Input source =  TIM5 TRIG Output  */
+  TIM1_TS_TIM6                         = ((u8)0x00),  /*!< TRIG Input source =  TIM6 TRIG Output  */
+    TIM1_TS_TIM5                         = ((u8)0x30),  /*!< TRIG Input source =  TIM5 TRIG Output  */
   TIM1_TS_TI1F_ED                    = ((u8)0x40),
   TIM1_TS_TI1FP1                     = ((u8)0x50),
   TIM1_TS_TI2FP2                     = ((u8)0x60),
@@ -316,7 +316,7 @@ typedef enum
 #define IS_TIM1_TRIGGER_SELECTION_OK(SELECTION) (((SELECTION) == TIM1_TS_TI1F_ED) || \
     ((SELECTION) == TIM1_TS_TI1FP1) || \
     ((SELECTION) == TIM1_TS_TI2FP2) || \
-	  ((SELECTION) == TIM1_TS_ETRF) || \
+      ((SELECTION) == TIM1_TS_ETRF) || \
     ((SELECTION) == TIM1_TS_TIM5) || \
     ((SELECTION) == TIM1_TS_TIM6))
 

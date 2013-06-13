@@ -679,8 +679,8 @@ typedef struct TIM2_struct
 {
   vu8 CR1;   /*!< control register 1 */
 #if defined STM8S103
-	vu8 RESERVED1; /*!< Reserved register */
-	vu8 RESERVED2; /*!< Reserved register */
+    vu8 RESERVED1; /*!< Reserved register */
+    vu8 RESERVED2; /*!< Reserved register */
 #endif
   vu8 IER;   /*!< interrupt enable register */
   vu8 SR1;   /*!< status register 1 */
@@ -914,8 +914,8 @@ typedef struct TIM4_struct
 {
   vu8 CR1;  /*!< control register 1 */
 #if defined STM8S103
-	vu8 RESERVED1; /*!< Reserved register */
-	vu8 RESERVED2; /*!< Reserved register */
+    vu8 RESERVED1; /*!< Reserved register */
+    vu8 RESERVED2; /*!< Reserved register */
 #endif
   vu8 IER;  /*!< interrupt enable register */
   vu8 SR1;  /*!< status register 1 */
@@ -1005,8 +1005,8 @@ typedef struct TIM5_struct
   */
 
 #define TIM5_CR1_RESET_VALUE   ((u8)0x00)
-#define TIM5_CR2_RESET_VALUE 	((u8)0x00)
-#define TIM5_SMCR_RESET_VALUE	((u8)0x00)
+#define TIM5_CR2_RESET_VALUE     ((u8)0x00)
+#define TIM5_SMCR_RESET_VALUE    ((u8)0x00)
 #define TIM5_IER_RESET_VALUE   ((u8)0x00)
 #define TIM5_SR1_RESET_VALUE   ((u8)0x00)
 #define TIM5_SR2_RESET_VALUE   ((u8)0x00)
@@ -1043,8 +1043,8 @@ typedef struct TIM5_struct
 #define TIM5_CR1_CEN  ((u8)0x01) /*!< Counter Enable mask. */
 
 /* CR2*/
-#define TIM5_CR2_TI1S 	  ((u8)0x80) /*!< TI1S Selection Mask. */
-#define	TIM5_CR2_MMS	  ((u8)0x70) /*!< MMS Selection Mask. */
+#define TIM5_CR2_TI1S       ((u8)0x80) /*!< TI1S Selection Mask. */
+#define    TIM5_CR2_MMS      ((u8)0x70) /*!< MMS Selection Mask. */
 
 /* SMCR*/
 #define TIM5_SMCR_MSM      ((u8)0x80) /*!< Master/Slave Mode Mask. */
@@ -1078,7 +1078,7 @@ typedef struct TIM5_struct
 #define TIM5_CCMR_ICxPSC ((u8)0x0C) /*!< Input Capture x Prescaler mask. */
 #define TIM5_CCMR_ICxF   ((u8)0xF0) /*!< Input Capture x Filter mask. */
 #define TIM5_CCMR_OCM    ((u8)0x70) /*!< Output Compare x Mode mask. */
-#define	TIM5_CCMR_OCxPE  ((u8)0x08) /*!< Output Compare x Preload Enable mask. */
+#define    TIM5_CCMR_OCxPE  ((u8)0x08) /*!< Output Compare x Preload Enable mask. */
 #define TIM5_CCMR_CCxS   ((u8)0x03) /*!< Capture/Compare x Selection mask. */
 /*CCER1*/
 #define TIM5_CCER1_CC2P ((u8)0x20) /*!< Capture/Compare 2 output Polarity mask. */
@@ -1110,7 +1110,7 @@ typedef struct TIM5_struct
 /**
   * @}
   */
-	
+    
 /*----------------------------------------------------------------------------*/
 /**
   * @brief 8-bit system timer  with synchro module(TIM6)
@@ -1118,15 +1118,15 @@ typedef struct TIM5_struct
 
 typedef struct TIM6_struct
 {
-    vu8 CR1; 	/*!< control register 1 */
-    vu8 CR2; 	/*!< control register 2 */
-    vu8 SMCR; 	/*!< Synchro mode control register */
-    vu8 IER; 	/*!< interrupt enable register  */
-    vu8 SR1; 	/*!< status register 1    */
-    vu8 EGR; 	/*!< event generation register */
-    vu8 CNTR; 	/*!< counter register  */
-    vu8 PSCR; 	/*!< prescaler register */
-    vu8 ARR; 	/*!< auto-reload register */
+    vu8 CR1;     /*!< control register 1 */
+    vu8 CR2;     /*!< control register 2 */
+    vu8 SMCR;     /*!< Synchro mode control register */
+    vu8 IER;     /*!< interrupt enable register  */
+    vu8 SR1;     /*!< status register 1    */
+    vu8 EGR;     /*!< event generation register */
+    vu8 CNTR;     /*!< counter register  */
+    vu8 PSCR;     /*!< prescaler register */
+    vu8 ARR;     /*!< auto-reload register */
 }
 TIM6_TypeDef;
 /** @addtogroup TIM6_Registers_Reset_Value
@@ -1158,7 +1158,7 @@ TIM6_TypeDef;
 
 /* CR2*/
 
-#define	TIM6_CR2_MMS	  ((u8)0x70) /*!< MMS Selection Mask. */
+#define    TIM6_CR2_MMS      ((u8)0x70) /*!< MMS Selection Mask. */
 
 /* SMCR*/
 #define TIM6_SMCR_MSM      ((u8)0x80) /*!< Master/Slave Mode Mask. */
@@ -1179,7 +1179,7 @@ TIM6_TypeDef;
 /* PSCR*/
 #define TIM6_PSCR_PSC      ((u8)0x07) /*!<Prescaler Value  Mask. */
 
-#define TIM6_ARR_ARR 	   ((u8)0xFF) /*!<Autoreload Value Mask. */
+#define TIM6_ARR_ARR        ((u8)0xFF) /*!<Autoreload Value Mask. */
 /**
   * @}
   */
@@ -1747,7 +1747,7 @@ typedef struct UART2_struct
   vu8 CR3;  /*!< UART1 control register 3 */
   vu8 CR4;  /*!< UART1 control register 4 */
   vu8 CR5;  /*!< UART1 control register 5 */
-	vu8 CR6;  /*!< UART1 control register 6 */
+    vu8 CR6;  /*!< UART1 control register 6 */
   vu8 GTR;  /*!< UART1 guard time register */
   vu8 PSCR; /*!< UART1 prescaler register */
 }
@@ -1969,9 +1969,9 @@ typedef struct
       vu8 MTSRL;
       vu8 MTSRH;
     }
-	  TxMailbox;
+      TxMailbox;
 
-	struct
+    struct
     {
       vu8 FR01;
       vu8 FR02;
@@ -1991,8 +1991,8 @@ typedef struct
       vu8 FR15;
       vu8 FR16;
     }
-	Filter;
-	  
+    Filter;
+      
 
     struct
     {
@@ -2012,9 +2012,9 @@ typedef struct
       vu8 F1R5;
       vu8 F1R6;
       vu8 F1R7;
-	  vu8 F1R8;
+      vu8 F1R8;
     }
-	  Filter01;
+      Filter01;
     
     struct
     {
@@ -2026,7 +2026,7 @@ typedef struct
       vu8 F2R6;
       vu8 F2R7;
       vu8 F2R8;
-	
+    
       vu8 F3R1;
       vu8 F3R2;
       vu8 F3R3;
@@ -2036,7 +2036,7 @@ typedef struct
       vu8 F3R7;
       vu8 F3R8;
     }
-	  Filter23;
+      Filter23;
     
     struct
     {
@@ -2048,7 +2048,7 @@ typedef struct
       vu8 F4R6;
       vu8 F4R7;
       vu8 F4R8;
-			
+            
       vu8 F5R1;
       vu8 F5R2;
       vu8 F5R3;
@@ -2058,7 +2058,7 @@ typedef struct
       vu8 F5R7;
       vu8 F5R8;
     }
-	  Filter45;
+      Filter45;
     
     struct
     {
@@ -2076,7 +2076,7 @@ typedef struct
       vu8 FCR3;
       u8 Reserved2[3];
     }
-		Config;
+        Config;
     
     struct
     {
@@ -2097,7 +2097,7 @@ typedef struct
       vu8 MTSRL;
       vu8 MTSRH;
     }
-	  RxFIFO;
+      RxFIFO;
   }Page; 
 } CAN_TypeDef;
 /** @addtogroup CAN_Registers_Bits_Definition
@@ -2267,28 +2267,28 @@ typedef struct
   * @{
   */
 
-#define  	CAN_MCR_RESET_VALUE			((u8)0x02)
-#define  	CAN_MSR_RESET_VALUE			((u8)0x02)
-#define  	CAN_TSR_RESET_VALUE			((u8)0x00)
-#define  	CAN_TPR_RESET_VALUE			((u8)0x0C)
-#define  	CAN_RFR_RESET_VALUE			((u8)0x00)
-#define  	CAN_IER_RESET_VALUE			((u8)0x00)
-#define  	CAN_DGR_RESET_VALUE			((u8)0x0C)
-#define  	CAN_PSR_RESET_VALUE			((u8)0x00)
+#define      CAN_MCR_RESET_VALUE            ((u8)0x02)
+#define      CAN_MSR_RESET_VALUE            ((u8)0x02)
+#define      CAN_TSR_RESET_VALUE            ((u8)0x00)
+#define      CAN_TPR_RESET_VALUE            ((u8)0x0C)
+#define      CAN_RFR_RESET_VALUE            ((u8)0x00)
+#define      CAN_IER_RESET_VALUE            ((u8)0x00)
+#define      CAN_DGR_RESET_VALUE            ((u8)0x0C)
+#define      CAN_PSR_RESET_VALUE            ((u8)0x00)
 
-#define  	CAN_ESR_RESET_VALUE			((u8)0x00)
-#define  	CAN_EIER_RESET_VALUE		((u8)0x00)
-#define  	CAN_TECR_RESET_VALUE		((u8)0x00)
-#define  	CAN_RECR_RESET_VALUE		((u8)0x00)
-#define  	CAN_BTR1_RESET_VALUE		((u8)0x40)
-#define  	CAN_BTR2_RESET_VALUE		((u8)0x23)
-#define  	CAN_FMR1_RESET_VALUE		((u8)0x00)
-#define  	CAN_FMR2_RESET_VALUE		((u8)0x00)
-#define  	CAN_FCR_RESET_VALUE			((u8)0x00)
+#define      CAN_ESR_RESET_VALUE            ((u8)0x00)
+#define      CAN_EIER_RESET_VALUE        ((u8)0x00)
+#define      CAN_TECR_RESET_VALUE        ((u8)0x00)
+#define      CAN_RECR_RESET_VALUE        ((u8)0x00)
+#define      CAN_BTR1_RESET_VALUE        ((u8)0x40)
+#define      CAN_BTR2_RESET_VALUE        ((u8)0x23)
+#define      CAN_FMR1_RESET_VALUE        ((u8)0x00)
+#define      CAN_FMR2_RESET_VALUE        ((u8)0x00)
+#define      CAN_FCR_RESET_VALUE            ((u8)0x00)
 
-#define  	CAN_MFMI_RESET_VALUE			((u8)0x00)
-#define  	CAN_MDLC_RESET_VALUE			((u8)0x00)
-#define  	CAN_MCSR_RESET_VALUE			((u8)0x00)
+#define      CAN_MFMI_RESET_VALUE            ((u8)0x00)
+#define      CAN_MDLC_RESET_VALUE            ((u8)0x00)
+#define      CAN_MCSR_RESET_VALUE            ((u8)0x00)
 
 /**
   * @}

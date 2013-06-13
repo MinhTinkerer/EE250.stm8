@@ -40,7 +40,7 @@
   *  IWDG_WriteAccess: new state of write access to Prescaler and Reload registers.
   *  This parameter can be one of the following values:
   *  - IWDG_WriteAccess_Enable: Enable write access to
-	* Prescaler and Reload registers
+    * Prescaler and Reload registers
   * - IWDG_WriteAccess_Disable: Disable write access to
   * Prescaler and Reload registers
   * @param[in] IWDG_WriteAccess enable or disable the write access.

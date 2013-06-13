@@ -119,7 +119,7 @@ typedef enum {
   ADC1_SCHMITTTRIG_CHANNEL7  = (u8)0x07, /**< Schmitt trigger disable on AIN7 */
   ADC1_SCHMITTTRIG_CHANNEL8  = (u8)0x08, /**< Schmitt trigger disable on AIN8 */
   ADC1_SCHMITTTRIG_CHANNEL9  = (u8)0x09, /**< Schmitt trigger disable on AIN9 */  
-	ADC1_SCHMITTTRIG_ALL			 = (u8)0xFF /**< Schmitt trigger disable on All channels */ 
+    ADC1_SCHMITTTRIG_ALL             = (u8)0xFF /**< Schmitt trigger disable on All channels */ 
 } ADC1_SchmittTrigg_TypeDef;
 
 /**
@@ -180,7 +180,7 @@ typedef enum {
   * @brief Macro used by the assert function to check the different external trigger values.
   */
 #define IS_ADC1_EXTTRIG_OK(EXTRIG) (((EXTRIG) == ADC1_EXTTRIG_TIM) || \
-								                   ((EXTRIG) == ADC1_EXTTRIG_GPIO))
+                                                   ((EXTRIG) == ADC1_EXTTRIG_GPIO))
 
 /**
   * @brief Macro used by the assert function to check the different alignement modes.
@@ -239,7 +239,7 @@ typedef enum {
     ((SCHMITTTRIG) == ADC1_SCHMITTTRIG_CHANNEL6) || \
     ((SCHMITTTRIG) == ADC1_SCHMITTTRIG_CHANNEL7) || \
     ((SCHMITTTRIG) == ADC1_SCHMITTTRIG_CHANNEL8) || \
-		((SCHMITTTRIG) == ADC1_SCHMITTTRIG_ALL) || \
+        ((SCHMITTTRIG) == ADC1_SCHMITTTRIG_ALL) || \
     ((SCHMITTTRIG) == ADC1_SCHMITTTRIG_CHANNEL9))
 
 /**

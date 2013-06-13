@@ -41,7 +41,7 @@
   * @par Full description:
   * Set the UART1 peripheral registers to their default reset values.
   * @retval None
-	*/
+    */
 void UART1_DeInit(void)
 {
     u8 dummy = 0;

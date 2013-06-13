@@ -45,14 +45,14 @@
   */
 void TIM6_DeInit(void)
 {
-    TIM6->CR1 	= TIM6_CR1_RESET_VALUE;
-    TIM6->CR2 	= TIM6_CR2_RESET_VALUE;
-    TIM6->SMCR 	= TIM6_SMCR_RESET_VALUE;
-    TIM6->IER 	= TIM6_IER_RESET_VALUE;
-    TIM6->CNTR 	= TIM6_CNTR_RESET_VALUE;
-    TIM6->PSCR	= TIM6_PSCR_RESET_VALUE;
-    TIM6->ARR 	= TIM6_ARR_RESET_VALUE;
-    TIM6->SR1 	= TIM6_SR1_RESET_VALUE;
+    TIM6->CR1     = TIM6_CR1_RESET_VALUE;
+    TIM6->CR2     = TIM6_CR2_RESET_VALUE;
+    TIM6->SMCR     = TIM6_SMCR_RESET_VALUE;
+    TIM6->IER     = TIM6_IER_RESET_VALUE;
+    TIM6->CNTR     = TIM6_CNTR_RESET_VALUE;
+    TIM6->PSCR    = TIM6_PSCR_RESET_VALUE;
+    TIM6->ARR     = TIM6_ARR_RESET_VALUE;
+    TIM6->SR1     = TIM6_SR1_RESET_VALUE;
 }
 
 /**
@@ -269,7 +269,7 @@ TIM6_Prescaler_TypeDef TIM6_GetPrescaler(void)
   * @param[in] TIM6_IT : Specifies the TIM6 interrupts sources to be enabled or disabled.
   * This parameter can be any combination of the @ref TIM6_IT_TypeDef enumeration.
   * @param[in] NewState : The new state of the TIM6 peripheral.
-	* This parameter can be any of the @ref FunctionalState enumeration.
+    * This parameter can be any of the @ref FunctionalState enumeration.
   * @retval None
   * @par Required preconditions:
   * If QST option bit is enabled, the TIM6 Interrupt vector will be mapped on IRQ number 2 (irq0).
@@ -312,7 +312,7 @@ void TIM6_ClearFlag(TIM6_FLAG_TypeDef TIM6_FLAG)
   * @param[in] TIM6_IT : Specifies the TIM6 interrupt source to check.
   * This parameter can be one of the @ref TIM6_IT_TypeDef enumeration.
   * @retval ITStatus : The new state of the TIM6_IT.
-	* This parameter can be any of the @ref ITStatus enumeration.
+    * This parameter can be any of the @ref ITStatus enumeration.
   */
 
 ITStatus TIM6_GetITStatus(TIM6_IT_TypeDef TIM6_IT)
@@ -358,7 +358,7 @@ void TIM6_GenerateEvent(TIM6_EventSource_TypeDef TIM6_EventSource)
   * @param[in] TIM6_FLAG : Specifies the flag to check.
   * This parameter can be one of the @ref TIM6_FLAG_TypeDef enumeration.
   * @retval FlagStatus : The new state of TIM6_FLAG.
-	* This parameter can be any of the @ref FlagStatus enumeration.
+    * This parameter can be any of the @ref FlagStatus enumeration.
   */
 FlagStatus TIM6_GetFlagStatus(TIM6_FLAG_TypeDef TIM6_FLAG)
 {
@@ -420,7 +420,7 @@ void TIM6_SelectOutputTrigger(TIM6_TRGOSource_TypeDef TIM6_TRGOSource)
 /**
   * @brief Sets or Resets the TIM6 Master/Slave Mode.
   * @param[in] NewState : The new state of the synchronization between TIM6 and its slaves (through TRGO).
-	* This parameter can be any of the @ref FunctionalState enumeration.
+    * This parameter can be any of the @ref FunctionalState enumeration.
   * @retval None
   */
 

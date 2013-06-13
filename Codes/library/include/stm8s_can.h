@@ -169,9 +169,9 @@ typedef enum
 typedef enum
 {
   CAN_FilterMode_IdMask                  =  ((u8)0x00),    /*!< id/mask mode */
-	CAN_FilterMode_IdMask_IdList           =  ((u8)0x10),    /*!< Id/Mask mode First and IdList mode second */
-	CAN_FilterMode_IdList_IdMask           =  ((u8)0x11),    /*!< IdList mode First and IdMask mode second */
-	CAN_FilterMode_IdList                  =  ((u8)0x01)     /*!< identifier list mode */
+    CAN_FilterMode_IdMask_IdList           =  ((u8)0x10),    /*!< Id/Mask mode First and IdList mode second */
+    CAN_FilterMode_IdList_IdMask           =  ((u8)0x11),    /*!< IdList mode First and IdMask mode second */
+    CAN_FilterMode_IdList                  =  ((u8)0x01)     /*!< identifier list mode */
 }CAN_FilterMode_TypeDef;
 
 /**
@@ -199,9 +199,9 @@ typedef enum
 typedef enum
 {
   CAN_NbrPendingMessage_0     =  ((u8)0x00),  /*!< No Msg Pending */
-	CAN_NbrPendingMessage_1     =  ((u8)0x01),  /*!< 1 Msg Pending */
-	CAN_NbrPendingMessage_2     =  ((u8)0x02),  /*!< 2 Msg Pending */
-	CAN_NbrPendingMessage_3     =  ((u8)0x03)  /*!< 3 Msg Pending */
+    CAN_NbrPendingMessage_1     =  ((u8)0x01),  /*!< 1 Msg Pending */
+    CAN_NbrPendingMessage_2     =  ((u8)0x02),  /*!< 2 Msg Pending */
+    CAN_NbrPendingMessage_3     =  ((u8)0x03)  /*!< 3 Msg Pending */
 }CAN_NbrPendingMessage_TypeDef;
 
 /**
@@ -228,10 +228,10 @@ typedef enum
   CAN_TxStatus_Ok                     =((u8)0xF1), /*!< CAN transmission succeeded */
   CAN_TxStatus_Pending                =((u8)0xF2), /*!< CAN transmission pending */
   CAN_TxStatus_NoMailBox              =((u8)0xF4), /*!< CAN cell did not provide an empty mailbox */
-	CAN_TxStatus_MailBoxEmpty           =((u8)0xF5), /*!< CAN Tx mailbox is Empty */
-	CAN_TxStatus_MailBox0Ok             =((u8)0x00), /*!< CAN transmission succeeded by mail box 1*/
-	CAN_TxStatus_MailBox1Ok             =((u8)0x01), /*!< CAN transmission succeeded by mail box 2*/
-	CAN_TxStatus_MailBox2Ok             =((u8)0x05) /*!< CAN transmission succeeded by mail box 3*/
+    CAN_TxStatus_MailBoxEmpty           =((u8)0xF5), /*!< CAN Tx mailbox is Empty */
+    CAN_TxStatus_MailBox0Ok             =((u8)0x00), /*!< CAN transmission succeeded by mail box 1*/
+    CAN_TxStatus_MailBox1Ok             =((u8)0x01), /*!< CAN transmission succeeded by mail box 2*/
+    CAN_TxStatus_MailBox2Ok             =((u8)0x05) /*!< CAN transmission succeeded by mail box 3*/
 }CAN_TxStatus_TypeDef;
 
 /**
@@ -262,19 +262,19 @@ typedef enum
 typedef enum
 {
   /* if the flag is 0x3XXX, it means that it can be got (CAN_GetFlagStatus) and Cleared (CAN_ClearFlag) */
-	/* if the flag is 0x1XXX, it means that it can only be got (CAN_GetFlagStatus)  */
+    /* if the flag is 0x1XXX, it means that it can only be got (CAN_GetFlagStatus)  */
   /*Transmit Flags*/
   CAN_FLAG_RQCP0            =((u16)0x3401), /*!< Request MailBox0  Flag */
-	CAN_FLAG_RQCP1            =((u16)0x3402), /*!< Request MailBox1  Flag */
-	CAN_FLAG_RQCP2            =((u16)0x3404), /*!< Request MailBox2  Flag */
-	/*Receive Flags*/
-	CAN_FLAG_FMP              =((u16)0x1203), /*!< FIFO Message Pending Flag */
-	CAN_FLAG_FF               =((u16)0x3208), /*!< FIFO Full  Flag */
-	CAN_FLAG_FOV              =((u16)0x3210), /*!< FIFO Overrun  Flag */
-	/*Wake up Flag*/
-	CAN_FLAG_WKU              =((u16)0x3108), /*!< wake up   Flag */
-	/*Error Flags*/
-	CAN_FLAG_EWG              =((u16)0x1001), /*!< Error Warning Flag */
+    CAN_FLAG_RQCP1            =((u16)0x3402), /*!< Request MailBox1  Flag */
+    CAN_FLAG_RQCP2            =((u16)0x3404), /*!< Request MailBox2  Flag */
+    /*Receive Flags*/
+    CAN_FLAG_FMP              =((u16)0x1203), /*!< FIFO Message Pending Flag */
+    CAN_FLAG_FF               =((u16)0x3208), /*!< FIFO Full  Flag */
+    CAN_FLAG_FOV              =((u16)0x3210), /*!< FIFO Overrun  Flag */
+    /*Wake up Flag*/
+    CAN_FLAG_WKU              =((u16)0x3108), /*!< wake up   Flag */
+    /*Error Flags*/
+    CAN_FLAG_EWG              =((u16)0x1001), /*!< Error Warning Flag */
   CAN_FLAG_EPV              =((u16)0x1002), /*!< Error Passive Flag */
   CAN_FLAG_BOF              =((u16)0x1004), /*!< Bus-Off Flag */
   CAN_FLAG_LEC              =((u16)0x3070) /*!< Last error code Flag */
@@ -285,16 +285,16 @@ typedef enum
 typedef enum
 {
   /*Transmit Interruption*/
-	CAN_IT_TME                  =((u16)0x0001), /*!< Transmit mailbox empty interrupt */
+    CAN_IT_TME                  =((u16)0x0001), /*!< Transmit mailbox empty interrupt */
   /*Receive Interruptions*/
-	CAN_IT_FMP                  =((u16)0x0002), /*!< FIFO  message pending interrupt   */	
+    CAN_IT_FMP                  =((u16)0x0002), /*!< FIFO  message pending interrupt   */    
   CAN_IT_FF                   =((u16)0x0004), /*!< FIFO  full    interrupt                    */
   CAN_IT_FOV                  =((u16)0x0008), /*!< FIFO  overrun  interrupt               */
-	/*Wake Up Interruption*/
+    /*Wake Up Interruption*/
   CAN_IT_WKU                  =((u16)0x0080), /*!< Wake-up interrupt                         */
-	/*Error Interruptions*/
+    /*Error Interruptions*/
   CAN_IT_ERR                  =((u16)0x4000), /*!< Genaral Error interrupt                 */
-	CAN_IT_EWG                  =((u16)0x0100), /*!< Error warning interrupt                */
+    CAN_IT_EWG                  =((u16)0x0100), /*!< Error warning interrupt                */
   CAN_IT_EPV                  =((u16)0x0200), /*!< Error passive  interrupt                */
   CAN_IT_BOF                  =((u16)0x0400), /*!< Bus-off   interrupt                        */
   CAN_IT_LEC                  =((u16)0x0800)  /*!< Last error code interrupt              */
@@ -305,7 +305,7 @@ typedef enum
 typedef enum
 {
   CAN_ST7Compatibility_Enable     =  ((u8)0x00), /*!< CAN is compatible with ST7 beCAN (only 2 mailboxes are availble)*/
-	CAN_ST7Compatibility_Disable    =  ((u8)0x10)  /*!< CAN is not compatible with ST7 beCAN ( 3 mailboxes are availble)*/
+    CAN_ST7Compatibility_Disable    =  ((u8)0x10)  /*!< CAN is not compatible with ST7 beCAN ( 3 mailboxes are availble)*/
 }CAN_ST7Compatibility_TypeDef;
 
 /**
@@ -313,13 +313,13 @@ typedef enum
 typedef enum
 {                                                                  
   CAN_ErrorCode_NoErr                 = ((u8)0x00),  /*!< No Error  */ 
-	CAN_ErrorCode_StuffErr              = ((u8)0x10),  /*!< Stuff Error  */ 
-	CAN_ErrorCode_FormErr               = ((u8)0x20),  /*!< Form Error  */ 
-	CAN_ErrorCode_ACKErr                = ((u8)0x30),  /*!< Acknowledgment Error  */ 
-	CAN_ErrorCode_BitRecessiveErr       = ((u8)0x40),  /*!< Bit Recessive Error  */ 
-	CAN_ErrorCode_BitDominantErr        = ((u8)0x50),  /*!< Bit Dominant Error  */ 
-	CAN_ErrorCode_CRCErr                = ((u8)0x60),  /*!< CRC Error  */ 
-	CAN_ErrorCode_SoftwareSetErr        = ((u8)0x70)  /*!< Software Set Error  */ 
+    CAN_ErrorCode_StuffErr              = ((u8)0x10),  /*!< Stuff Error  */ 
+    CAN_ErrorCode_FormErr               = ((u8)0x20),  /*!< Form Error  */ 
+    CAN_ErrorCode_ACKErr                = ((u8)0x30),  /*!< Acknowledgment Error  */ 
+    CAN_ErrorCode_BitRecessiveErr       = ((u8)0x40),  /*!< Bit Recessive Error  */ 
+    CAN_ErrorCode_BitDominantErr        = ((u8)0x50),  /*!< Bit Dominant Error  */ 
+    CAN_ErrorCode_CRCErr                = ((u8)0x60),  /*!< CRC Error  */ 
+    CAN_ErrorCode_SoftwareSetErr        = ((u8)0x70)  /*!< Software Set Error  */ 
 }CAN_ErrorCode_TypeDef;
 /**
   * @}
@@ -337,7 +337,7 @@ typedef enum
   */
 #define IS_CAN_OPERATINGMODE_OK(MODE) (((MODE) == CAN_OperatingMode_Initialization) ||\
                                     ((MODE) == CAN_OperatingMode_Normal)|| \
-																		((MODE) == CAN_OperatingMode_Sleep))
+                                                                        ((MODE) == CAN_OperatingMode_Sleep))
 /**
   * @brief Macro used by the assert function in order to check CAN Time Triggered Communication mode.
   */
@@ -369,24 +369,24 @@ typedef enum
   */
 #define IS_CAN_FILTER_NUMBER_OK(NUMBER) (((NUMBER) == CAN_FilterNumber_0) || \
                                        ((NUMBER) == CAN_FilterNumber_1) || \
-									                     ((NUMBER) == CAN_FilterNumber_2) || \
-									                     ((NUMBER) == CAN_FilterNumber_3) || \
-									                     ((NUMBER) == CAN_FilterNumber_4) || \
-									                     ((NUMBER) == CAN_FilterNumber_5))
+                                                         ((NUMBER) == CAN_FilterNumber_2) || \
+                                                         ((NUMBER) == CAN_FilterNumber_3) || \
+                                                         ((NUMBER) == CAN_FilterNumber_4) || \
+                                                         ((NUMBER) == CAN_FilterNumber_5))
 /**
   * @brief Macro used by the assert function in order to check  CAN filter mode.
   */
 #define IS_CAN_FILTER_MODE_OK(MODE) (((MODE) == CAN_FilterMode_IdMask) || \
                                      ((MODE) == CAN_FilterMode_IdMask_IdList) || \
-																		 ((MODE) == CAN_FilterMode_IdList_IdMask) || \
+                                                                         ((MODE) == CAN_FilterMode_IdList_IdMask) || \
                                   ((MODE) == CAN_FilterMode_IdList))
 /**
   * @brief Macro used by the assert function in order to check CAN filter scale.
   */
 #define IS_CAN_FILTER_SCALE_OK(SCALE) (((SCALE) == CAN_FilterScale_8Bit)|| \
                                     ((SCALE) == CAN_FilterScale_16_8Bit) ||\
-																		((SCALE) == CAN_FilterScale_16Bit  )||\
-																		((SCALE) == CAN_FilterScale_32Bit))
+                                                                        ((SCALE) == CAN_FilterScale_16Bit  )||\
+                                                                        ((SCALE) == CAN_FilterScale_32Bit))
 /**
   * @brief Macro used by the assert function in order to check CAN Tx mailboxes.
   */
@@ -422,17 +422,17 @@ typedef enum
   */
 #define IS_CAN_FLAG_STATUS_OK(FLAG) (((FLAG) == CAN_FLAG_RQCP0) || ((FLAG) == CAN_FLAG_RQCP1) ||\
                                   ((FLAG) == CAN_FLAG_RQCP2) || ((FLAG) == CAN_FLAG_FMP) ||\
-																	((FLAG) == CAN_FLAG_FF) || ((FLAG) == CAN_FLAG_FOV) ||\
-																	((FLAG) == CAN_FLAG_WKU) || ((FLAG) == CAN_FLAG_EWG) ||\
-																	((FLAG) == CAN_FLAG_EPV) || ((FLAG) == CAN_FLAG_BOF) ||\
-																	((FLAG) == CAN_FLAG_LEC))
+                                                                    ((FLAG) == CAN_FLAG_FF) || ((FLAG) == CAN_FLAG_FOV) ||\
+                                                                    ((FLAG) == CAN_FLAG_WKU) || ((FLAG) == CAN_FLAG_EWG) ||\
+                                                                    ((FLAG) == CAN_FLAG_EPV) || ((FLAG) == CAN_FLAG_BOF) ||\
+                                                                    ((FLAG) == CAN_FLAG_LEC))
 /**
   * @brief Macro used by the assert function in order to check  CAN flags which can be cleared by @ref CAN_ClearFlag
   */
 #define IS_CAN_FLAG_CLEAR_OK(FLAG) (((FLAG) == CAN_FLAG_RQCP0) || ((FLAG) == CAN_FLAG_RQCP1) ||\
-                                    ((FLAG) == CAN_FLAG_RQCP2) ||	((FLAG) == CAN_FLAG_FF)   ||\
-																	  ((FLAG) == CAN_FLAG_FOV)  ||	((FLAG) == CAN_FLAG_WKU) ||\
-																	  ((FLAG) == CAN_FLAG_LEC))
+                                    ((FLAG) == CAN_FLAG_RQCP2) ||    ((FLAG) == CAN_FLAG_FF)   ||\
+                                                                      ((FLAG) == CAN_FLAG_FOV)  ||    ((FLAG) == CAN_FLAG_WKU) ||\
+                                                                      ((FLAG) == CAN_FLAG_LEC))
 /**
   * @brief Macro used by the assert function in order to check the  CAN Configuration interrupts.
   */
@@ -444,16 +444,16 @@ typedef enum
 #define IS_CAN_IT_STATUS_OK(IT) (((IT) == CAN_IT_TME)   || ((IT) == CAN_IT_FMP) ||\
                              ((IT) == CAN_IT_FF)    || ((IT) == CAN_IT_FOV) || \
                              ((IT) == CAN_IT_WKU)   || ((IT) == CAN_IT_ERR)  || \
-														 ((IT) == CAN_IT_EWG)   || ((IT) == CAN_IT_EPV)  || \
+                                                         ((IT) == CAN_IT_EWG)   || ((IT) == CAN_IT_EPV)  || \
                              ((IT) == CAN_IT_BOF)   || ((IT) == CAN_IT_LEC)  )
 /**
   * @brief Macro used by the assert function in order to check the  CAN Pending bit interrupts.
   */
 #define IS_CAN_IT_PENDING_BIT_OK(IT) (((IT) == CAN_IT_TME) || ((IT) == CAN_IT_FF)  ||\
-																			((IT) == CAN_IT_FOV)  || ((IT) == CAN_IT_WKU) ||\
-																			((IT) == CAN_IT_ERR)  || ((IT) == CAN_IT_EWG) ||\
-																			((IT) == CAN_IT_EPV) || ((IT) == CAN_IT_BOF)||\
-																			((IT) == CAN_IT_LEC))
+                                                                            ((IT) == CAN_IT_FOV)  || ((IT) == CAN_IT_WKU) ||\
+                                                                            ((IT) == CAN_IT_ERR)  || ((IT) == CAN_IT_EWG) ||\
+                                                                            ((IT) == CAN_IT_EPV) || ((IT) == CAN_IT_BOF)||\
+                                                                            ((IT) == CAN_IT_LEC))
 /**
   * @brief Macro used by the assert function in order to check the Last Error Code.
   */
@@ -468,25 +468,25 @@ typedef enum
   */
 void CAN_DeInit(void);
 CAN_InitStatus_TypeDef CAN_Init(CAN_MasterCtrl_TypeDef CAN_MasterCtrl,
-						                    CAN_Mode_TypeDef CAN_Mode,
-						                    CAN_SynJumpWidth_TypeDef CAN_SynJumpWidth,
-						                    CAN_BitSeg1_TypeDef CAN_BitSeg1,
-						                    CAN_BitSeg2_TypeDef CAN_BitSeg2,
-						                    CAN_ClockSource_TypeDef CAN_ClockSource,
-						                    u8 CAN_Prescaler);
+                                            CAN_Mode_TypeDef CAN_Mode,
+                                            CAN_SynJumpWidth_TypeDef CAN_SynJumpWidth,
+                                            CAN_BitSeg1_TypeDef CAN_BitSeg1,
+                                            CAN_BitSeg2_TypeDef CAN_BitSeg2,
+                                            CAN_ClockSource_TypeDef CAN_ClockSource,
+                                            u8 CAN_Prescaler);
 
 void CAN_FilterInit(CAN_FilterNumber_TypeDef CAN_FilterNumber,
                     FunctionalState CAN_FilterActivation,
                     CAN_FilterMode_TypeDef CAN_FilterMode,
-					          CAN_FilterScale_TypeDef CAN_FilterScale,
-					          u8 CAN_FilterID1,  
-				          	u8 CAN_FilterID2,
-				          	u8 CAN_FilterID3,
-				           	u8 CAN_FilterID4,
-				          	u8 CAN_FilterIDMask1,
-				           	u8 CAN_FilterIDMask2,
-					          u8 CAN_FilterIDMask3,
-				            u8 CAN_FilterIDMask4);
+                              CAN_FilterScale_TypeDef CAN_FilterScale,
+                              u8 CAN_FilterID1,  
+                              u8 CAN_FilterID2,
+                              u8 CAN_FilterID3,
+                               u8 CAN_FilterID4,
+                              u8 CAN_FilterIDMask1,
+                               u8 CAN_FilterIDMask2,
+                              u8 CAN_FilterIDMask3,
+                            u8 CAN_FilterIDMask4);
 void CAN_ITConfig(CAN_IT_TypeDef CAN_IT, FunctionalState NewState);
 void CAN_ST7CompatibilityCmd(CAN_ST7Compatibility_TypeDef CAN_ST7Compatibility);
 CAN_TxStatus_TypeDef CAN_Transmit( u32 CAN_Id,

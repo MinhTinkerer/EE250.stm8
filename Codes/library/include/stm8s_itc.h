@@ -44,7 +44,7 @@ typedef enum {
   ITC_IRQ_PORTC          = (u8)5,
   ITC_IRQ_PORTD          = (u8)6,
   ITC_IRQ_PORTE          = (u8)7,
-	
+    
 #ifdef STM8S208
   ITC_IRQ_CAN_RX         = (u8)8,
   ITC_IRQ_CAN_TX         = (u8)9,
@@ -57,13 +57,13 @@ typedef enum {
   ITC_IRQ_SPI            = (u8)10,
   ITC_IRQ_TIM1_OVF       = (u8)11,
   ITC_IRQ_TIM1_CAPCOM    = (u8)12,
-	
+    
 #ifdef STM8S903
   ITC_IRQ_TIM5_OVFTRI    = (u8)13,
   ITC_IRQ_TIM5_CAPCOM    = (u8)14,
-#else	
+#else    
   ITC_IRQ_TIM2_OVF       = (u8)13,
-  ITC_IRQ_TIM2_CAPCOM    = (u8)14,	
+  ITC_IRQ_TIM2_CAPCOM    = (u8)14,    
 #endif /*STM8S903*/
 
   ITC_IRQ_TIM3_OVF       = (u8)15,
@@ -71,26 +71,26 @@ typedef enum {
   ITC_IRQ_UART1_TX       = (u8)17,
   ITC_IRQ_UART1_RX       = (u8)18,
   ITC_IRQ_I2C            = (u8)19,
-	
+    
 #ifdef STM8S105
   ITC_IRQ_UART2_TX       = (u8)20,
   ITC_IRQ_UART2_RX       = (u8)21,
 #endif /*STM8S105*/
 
 #if defined(STM8S208) ||defined(STM8S207)
-	ITC_IRQ_UART3_TX       = (u8)20,
+    ITC_IRQ_UART3_TX       = (u8)20,
   ITC_IRQ_UART3_RX       = (u8)21,
   ITC_IRQ_ADC2           = (u8)22,
 #endif /*STM8S208 or STM8S207*/
 
-#if defined(STM8S105) ||defined(STM8S103) ||defined(STM8S905)	
+#if defined(STM8S105) ||defined(STM8S103) ||defined(STM8S905)    
   ITC_IRQ_ADC1           = (u8)22,
 #endif /*STM8S105, STM8S103 or STM8S905 */
 
 #ifdef STM8S903
-	ITC_IRQ_TIM6_OVFTRI    = (u8)23,
+    ITC_IRQ_TIM6_OVFTRI    = (u8)23,
 #else
-	ITC_IRQ_TIM4_OVF       = (u8)23, 
+    ITC_IRQ_TIM4_OVF       = (u8)23, 
 #endif /*STM8S903*/
 
   ITC_IRQ_EEPROM_EEC     = (u8)24

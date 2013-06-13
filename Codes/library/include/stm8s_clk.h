@@ -112,10 +112,10 @@ typedef enum {
 typedef enum {
   CLK_PERIPHERAL_I2C    = (u8)0x00, /*!< Peripheral Clock Enable 1, I2C */
   CLK_PERIPHERAL_SPI    = (u8)0x01, /*!< Peripheral Clock Enable 1, SPI */
-#if defined(STM8S208) || defined(STM8S207)	
+#if defined(STM8S208) || defined(STM8S207)    
   CLK_PERIPHERAL_UART1   = (u8)0x02, /*!< Peripheral Clock Enable 1, UART1 */
 #else
-	CLK_PERIPHERAL_UART1   = (u8)0x03, /*!< Peripheral Clock Enable 1, UART1 */
+    CLK_PERIPHERAL_UART1   = (u8)0x03, /*!< Peripheral Clock Enable 1, UART1 */
 #endif
   CLK_PERIPHERAL_UART2   = (u8)0x03, /*!< Peripheral Clock Enable 1, UART2 */
   CLK_PERIPHERAL_UART3   = (u8)0x03, /*!< Peripheral Clock Enable 1, UART3 */

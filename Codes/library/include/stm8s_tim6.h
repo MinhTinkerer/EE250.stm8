@@ -39,11 +39,11 @@
   */
 typedef enum
 {
-    TIM6_PRESCALER_1	   = ((u8)0x00),	/*!< Time base Prescaler = 1 (No effect)*/
-    TIM6_PRESCALER_2   	 = ((u8)0x01),  /*!< Time base Prescaler = 2 */
-    TIM6_PRESCALER_4   	 = ((u8)0x02),  /*!< Time base Prescaler = 4 */
-    TIM6_PRESCALER_8	   = ((u8)0x03),  /*!< Time base Prescaler = 8 */
-    TIM6_PRESCALER_16  	 = ((u8)0x04),  /*!< Time base Prescaler = 16 */
+    TIM6_PRESCALER_1       = ((u8)0x00),    /*!< Time base Prescaler = 1 (No effect)*/
+    TIM6_PRESCALER_2        = ((u8)0x01),  /*!< Time base Prescaler = 2 */
+    TIM6_PRESCALER_4        = ((u8)0x02),  /*!< Time base Prescaler = 4 */
+    TIM6_PRESCALER_8       = ((u8)0x03),  /*!< Time base Prescaler = 8 */
+    TIM6_PRESCALER_16       = ((u8)0x04),  /*!< Time base Prescaler = 16 */
     TIM6_PRESCALER_32    = ((u8)0x05),  /*!< Time base Prescaler = 32 */
     TIM6_PRESCALER_64    = ((u8)0x06),  /*!< Time base Prescaler = 64 */
     TIM6_PRESCALER_128   = ((u8)0x07)  /*!< Time base Prescaler = 128 */
@@ -54,7 +54,7 @@ typedef enum
   */
 typedef enum
 {
-    TIM6_OPMODE_SINGLE		  = ((u8)0x01),  /*!< Single one Pulse mode (OPM Active) */
+    TIM6_OPMODE_SINGLE          = ((u8)0x01),  /*!< Single one Pulse mode (OPM Active) */
     TIM6_OPMODE_REPETITIVE  = ((u8)0x00)   /*!< Repetitive Pulse mode (OPM inactive) */
 }TIM6_OPMode_TypeDef;
 
@@ -63,8 +63,8 @@ typedef enum
   */
 typedef enum
 {
-    TIM6_PSCRELOADMODE_UPDATE	    =((u8)0x00),	/*!< Prescaler value is reloaded at every update*/
-    TIM6_PSCRELOADMODE_IMMEDIATE	=((u8)0x01)		/*!< Prescaler value is reloaded immediatly*/
+    TIM6_PSCRELOADMODE_UPDATE        =((u8)0x00),    /*!< Prescaler value is reloaded at every update*/
+    TIM6_PSCRELOADMODE_IMMEDIATE    =((u8)0x01)        /*!< Prescaler value is reloaded immediatly*/
 }TIM6_PSCReloadMode_TypeDef;
 
 /**
@@ -72,8 +72,8 @@ typedef enum
   */
 typedef enum
 {
-    TIM6_UPDATESOURCE_GLOBAL	=((u8)0x00),	/*!< Global Update request source */
-    TIM6_UPDATESOURCE_REGULAR	=((u8)0x01)		/*!< Regular Update request source */
+    TIM6_UPDATESOURCE_GLOBAL    =((u8)0x00),    /*!< Global Update request source */
+    TIM6_UPDATESOURCE_REGULAR    =((u8)0x01)        /*!< Regular Update request source */
 }TIM6_UpdateSource_TypeDef;
 
 /**
@@ -81,8 +81,8 @@ typedef enum
   */
 typedef enum
 {
-    TIM6_EVENTSOURCE_UPDATE		= ((u8)0x01),		/*!< Update Event*/
-    TIM6_EVENTSOURCE_TRIGGER	= ((u8)0x40)		/*!< Trigger Event*/
+    TIM6_EVENTSOURCE_UPDATE        = ((u8)0x01),        /*!< Update Event*/
+    TIM6_EVENTSOURCE_TRIGGER    = ((u8)0x40)        /*!< Trigger Event*/
 }TIM6_EventSource_TypeDef;
 
 /**
@@ -90,9 +90,9 @@ typedef enum
   */
 typedef enum
 {
-    TIM6_TRGOSOURCE_RESET		= ((u8)0x00),		/*!< Trigger Output source = Reset*/
-    TIM6_TRGOSOURCE_ENABLE	= ((u8)0x10),		/*!< Trigger Output source = TIM5 is enabled*/
-    TIM6_TRGOSOURCE_UPDATE	= ((u8)0x20)		/*!< Trigger Output source = Update event*/
+    TIM6_TRGOSOURCE_RESET        = ((u8)0x00),        /*!< Trigger Output source = Reset*/
+    TIM6_TRGOSOURCE_ENABLE    = ((u8)0x10),        /*!< Trigger Output source = TIM5 is enabled*/
+    TIM6_TRGOSOURCE_UPDATE    = ((u8)0x20)        /*!< Trigger Output source = Update event*/
 }TIM6_TRGOSource_TypeDef;
 
 /**
@@ -100,11 +100,11 @@ typedef enum
   */
 typedef enum
 {
-    TIM6_SLAVEMODE_DISABLE		= ((u8)0x00), 	/*!< Disable slave mode to clock the prescaler directly with the internal clock */
-    TIM6_SLAVEMODE_RESET			= ((u8)0x04), 	/*!< Slave Mode Selection  = Reset*/
-    TIM6_SLAVEMODE_GATED			= ((u8)0x05), 	/*!< Slave Mode Selection  = Gated*/
-    TIM6_SLAVEMODE_TRIGGER		= ((u8)0x06),		/*!< Slave Mode Selection  = Trigger*/
-    TIM6_SLAVEMODE_EXTERNAL1	= ((u8)0x07)		/*!< Slave Mode Selection  = External 1*/
+    TIM6_SLAVEMODE_DISABLE        = ((u8)0x00),     /*!< Disable slave mode to clock the prescaler directly with the internal clock */
+    TIM6_SLAVEMODE_RESET            = ((u8)0x04),     /*!< Slave Mode Selection  = Reset*/
+    TIM6_SLAVEMODE_GATED            = ((u8)0x05),     /*!< Slave Mode Selection  = Gated*/
+    TIM6_SLAVEMODE_TRIGGER        = ((u8)0x06),        /*!< Slave Mode Selection  = Trigger*/
+    TIM6_SLAVEMODE_EXTERNAL1    = ((u8)0x07)        /*!< Slave Mode Selection  = External 1*/
 }TIM6_SlaveMode_TypeDef;
 
 /**
@@ -112,8 +112,8 @@ typedef enum
   */
 typedef enum
 {
-    TIM6_FLAG_UPDATE	= ((u8)0x01),		/*!< Update Flag */
-    TIM6_FLAG_TRIGGER	= ((u8)0x40)		/*!< Trigger Flag */
+    TIM6_FLAG_UPDATE    = ((u8)0x01),        /*!< Update Flag */
+    TIM6_FLAG_TRIGGER    = ((u8)0x40)        /*!< Trigger Flag */
 }TIM6_FLAG_TypeDef;
 
 /**
@@ -121,8 +121,8 @@ typedef enum
   */
 typedef enum
 {
-    TIM6_IT_UPDATE	= ((u8)0x01),		/*!< Update Interrupt*/
-    TIM6_IT_TRIGGER	= ((u8)0x40)		/*!< Trigger  Interrupt*/
+    TIM6_IT_UPDATE    = ((u8)0x01),        /*!< Update Interrupt*/
+    TIM6_IT_TRIGGER    = ((u8)0x40)        /*!< Trigger  Interrupt*/
 }TIM6_IT_TypeDef;
 
 /**
@@ -130,8 +130,8 @@ typedef enum
   */
 typedef enum
 {
-    TIM6_TS_TIM1	= ((u8)0x20),/*!< TRIG Input source =  TIM1 TRIG Output  */
-    TIM6_TS_TIM5	= ((u8)0x30) /*!< TRIG Input source =  TIM5 TRIG Output  */
+    TIM6_TS_TIM1    = ((u8)0x20),/*!< TRIG Input source =  TIM1 TRIG Output  */
+    TIM6_TS_TIM5    = ((u8)0x30) /*!< TRIG Input source =  TIM5 TRIG Output  */
 }TIM6_TS_TypeDef;
 
 /**
@@ -186,7 +186,7 @@ typedef enum
   */
 #define IS_TIM6_EVENT_SOURCE_OK(SOURCE) \
    (((SOURCE & (u8)0xBE) == 0x00) && \
-	  ((SOURCE) != 0x00))
+      ((SOURCE) != 0x00))
 
 /**
   * @brief Macro TIM6 TRGO source
@@ -218,7 +218,7 @@ typedef enum
   */
 #define IS_TIM6_IT_OK(IT) \
    (((IT) != 0x00) && \
-	  (((u8)IT & (u8)(~(u8)(0x41)))== 0x00))
+      (((u8)IT & (u8)(~(u8)(0x41)))== 0x00))
 
 #define IS_TIM6_GET_IT_OK(IT) \
    (((IT) == TIM6_IT_UPDATE) || \
