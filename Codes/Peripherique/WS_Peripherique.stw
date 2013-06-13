@@ -4,9 +4,9 @@
 Keyword=ST7Workspace-V0.7
 
 [Project0]
-Filename=serveur\serveur.stp
+Filename=peripherique.stp
 Dependencies=
 [Options]
-ActiveProject=serveur
+ActiveProject=peripherique
 ActiveConfig=Debug
 AddSortedElements=1
