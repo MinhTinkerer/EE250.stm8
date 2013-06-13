@@ -1,4 +1,12 @@
-#include "crypt.h"
+/**
+ * \file crypt.c
+ * \brief Implementation des fonctions de crypt.h
+ * \author Alex NODET
+ * \version 0.1
+ * \date 13 juin 2013
+ */
+
+ #include "crypt.h"
 
 /**
  * \fn uint8_t CryptData(uint8_t* unsecureData, uint8_t len, CRYPT_Key key)

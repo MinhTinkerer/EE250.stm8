@@ -12,7 +12,6 @@
 #include <assert.h>
 #include "_stdint.h"
 #include "stm8s.h"
-#include "stm8s_i2c.h"
 
 #include "crypt.h"
 

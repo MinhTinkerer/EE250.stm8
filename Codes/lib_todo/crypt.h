@@ -1,4 +1,12 @@
-#ifndef CRYPT_H
+/**
+ * \file crypt.h
+ * \brief Fonctions de cryptage
+ * \author Alex NODET
+ * \version 0.1
+ * \date 13 juin 2013
+ */
+
+ #ifndef CRYPT_H
 #define CRYPT_H
 
 #include "_stdint.h"

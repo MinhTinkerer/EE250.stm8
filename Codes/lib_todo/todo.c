@@ -7,6 +7,7 @@
  */
 
 #include "todo.h"
+#include "stm8s_i2c.h"
 
 
 typedef struct TODO_ReceivedRawBuffer TODO_ReceivedRawBuffer;
