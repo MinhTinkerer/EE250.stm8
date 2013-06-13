@@ -9,9 +9,12 @@
 #ifndef TODO_H
 #define TODO_H
 
+#include <assert.h>
 #include "_stdint.h"
 #include "stm8s.h"
 #include "stm8s_i2c.h"
+
+#include "crypt.h"
 
 
 /**
@@ -81,7 +84,6 @@ typedef enum {
 } TODO_Flag;
 
 typedef uint8_t TODO_Addr;
-typedef uint16_t TODO_Key;
 
 /**
  * \struct TODO_Packet todo.h
@@ -95,22 +97,22 @@ typedef struct {
 } TODO_Packet;
 
 
-extern void TODO_Init(TODO_Addr addr, TODO_Key key);
-extern void TODO_ChangeKey(TODO_Key newKey);
+extern void TODO_Init(TODO_Addr addr, CRYPT_Key key);
+extern void TODO_ChangeKey(CRYPT_Key newKey);
 extern void TODO_Close(void);
 
 extern TODO_Packet* TODO_CreatePacket(const uint8_t *data, u8 len);
 extern void TODO_FreePacket(TODO_Packet* packet);
 
-extern TODO_ErrorType TODO_Send(TODO_Addr destAddress, const uint8_t* datas, size_t size);
-extern TODO_ErrorType TODO_SendSecure(TODO_Addr destAddress, uint8_t* datas, size_t size);
-extern TODO_ErrorType TODO_SendPacket(TODO_Addr destAddress, const TODO_Packet* packet);
-extern TODO_ErrorType TODO_SendSecurePacket(TODO_Addr destAddress, TODO_Packet* packet);
+extern uint8_t TODO_Send(TODO_Addr destAddress, const uint8_t* datas, size_t size);
+extern uint8_t TODO_SendSecure(TODO_Addr destAddress, uint8_t* datas, size_t size);
+extern uint8_t TODO_SendPacket(TODO_Addr destAddress, const TODO_Packet* packet);
+extern uint8_t TODO_SendSecurePacket(TODO_Addr destAddress, TODO_Packet* packet);
 
 extern uint8_t TODO_NewPacketPresent(void);
 extern @interrupt void TODO_ITHandler(void);
 
 extern TODO_Packet* TODO_Recv(void);
-
+extern TODO_ErrorType tRecv(u8 *buffer);
 
 #endif

@@ -18,7 +18,7 @@ struct TODO_ReceivedRawBuffer {
 typedef TODO_ReceivedRawBuffer* TODO_RawBufferFile;
 
 
-static TODO_Key internKey;
+static CRYPT_Key internKey;
 static uint8_t *receptBuffer;
 static uint8_t dataCursor;
 static uint8_t todoFlags;
@@ -54,6 +54,98 @@ void TODO_ChangeKey(TODO_Key newKey) {
  */
 void TODO_Close(void) {
 	I2C_DeInit();
+}
+
+
+TODO_Packet* TODO_CreatePacket(const uint8_t *data, u8 len) {
+	return NULL;
+}
+
+void TODO_FreePacket(TODO_Packet* packet) {
+
+}
+
+
+/**
+ * \fn TODO_ErrorType TODO_Send(const TODO_Packet* packet, u8 destAddress)
+ * \brief Envoie un paquet TODO sur le bus I2C.
+ *
+ * \attention Methode bloquante jusqu'a ce que le paquet soit entierement envoye.
+ *
+ * \param packet Paquet a envoyer.
+ * \param destAddress Adresse du destinataire.
+ * \return NoPacket si packet est nul, NoError sinon.
+ */
+uint8_t TODO_Send(TODO_Addr destAddress, const uint8_t* datas, size_t size) {
+	int i = 0;
+	
+	if(datas == NULL) {
+		return 0;
+	}
+	
+	I2C_GenerateSTART(ENABLE);
+	
+	while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
+	I2C_Send7bitAddress(destAddress & TODO_ADDRMASK, I2C_DIRECTION_TX);
+	
+	while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
+	I2C_SendData(datas[0]);
+	
+	while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
+	I2C_SendData(datas[1]);
+	
+	while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
+	I2C_SendData(0x00);
+	
+	for(i = 0; i < packet->len; i++) {
+		while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
+		I2C_SendData(datas[TODO_DATAOFFSET+i]);
+	}
+	
+	I2C_GenerateSTOP(ENABLE);
+	
+	return i+1;
+}
+
+uint8_t TODO_SendSecure(TODO_Addr destAddress, uint8_t* datas, size_t size) {
+	CryptData(datas, size, internKey);
+	TODO_Send(destAddress, datas, size);
+}
+
+uint8_t TODO_SendPacket(TODO_Addr destAddress, const TODO_Packet* packet) {
+	int i = 0;
+	
+	if(packet == NULL) {
+		return 0;
+	}
+	
+	I2C_GenerateSTART(ENABLE);
+	
+	while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
+	I2C_Send7bitAddress(destAddress & TODO_ADDRMASK, I2C_DIRECTION_TX);
+	
+	while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
+	I2C_SendData(packet->addr);
+	
+	while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
+	I2C_SendData(packet->len);
+	
+	while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
+	I2C_SendData(0x00);
+	
+	for(i = 0; i < packet->len; i++) {
+		while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
+		I2C_SendData(packet->data[i]);
+	}
+	
+	I2C_GenerateSTOP(ENABLE);
+	
+	return i+1;
+}
+
+uint8_t TODO_SendSecurePacket(TODO_Addr destAddress, TODO_Packet* packet) {
+	CryptData(packet->data, packet->length, internKey);
+	TODO_SendPacket(destAddress, packet);
 }
 
 
@@ -116,6 +208,25 @@ uint8_t TODO_NewPacketPresent(void) {
 }
 
 
+TODO_Packet* TODO_Recv(void) {
+	if(receivedPackets == NULL) {
+		return NULL;
+	}
+	
+	TODO_Packet *packet;
+	assert( packet = (TODO_Packet*)malloc(sizeof(TODO_Packet)) );
+	
+	TODO_ReceivedRawBuffer* bufferRecu = defileRawBuffer();
+	packet->addr = bufferRecu->rawBuffer[0];
+	packet->length = bufferRecu->rawBuffer[1];
+	packet->data = bufferRecu->rawBuffer[3];
+	
+	free(bufferRecu);
+	
+	return packet;
+}
+
+
 static FlagStatus TODO_GetFlagState(TODO_Flag flag) {
 	if((todoFlags & flag) == flag) {
 		return SET;
@@ -127,6 +238,7 @@ static FlagStatus TODO_GetFlagState(TODO_Flag flag) {
 static void TODO_ClearFlag(TODO_Flag flag) {
 	todoFlags &= (uint8_t)(~flag);
 }
+
 
 
 static void addRawBuffer(uint8_t* buf) {
@@ -172,28 +284,6 @@ static void freeRawBufferFile(TODO_RawBufferFile tete) {
 
 
 /**
- * \fn static TODO_ErrorType TODO_CryptPacket(TODO_Packet* unsecurePacket)
- * \brief Remplace les donnees d'un paquet par leur valeur chiffree.
- *
- * \param packet Pointeur sur le paquet a chiffrer.
- * \return Codes d'erreur.
- */
-static TODO_ErrorType TODO_CryptPacket(TODO_Packet* unsecurePacket) {
-	/* #TODORIANE */
-}
-
-/**
- * \fn static TODO_ErrorType TODO_UncryptPacket(TODO_Packet* securePacket)
- * \brief Remplace les donnees d'un paquet par leur valeur dechiffree.
- *
- * \param packet Pointeur sur le paquet a dechiffrer.
- * \return Codes d'erreur.
- */
-static TODO_ErrorType TODO_UncryptPacket(TODO_Packet* securePacket) {
-	/* #TODORIANE */
-}
-
-/**
  * \fn static TODO_PacketState TODO_IsPacketSecured(const TODO_Packet* packet)
  * \brief Indique si les donnees du paquet sont chiffrees ou non en se basant sur le bit CR.
  *
@@ -201,7 +291,7 @@ static TODO_ErrorType TODO_UncryptPacket(TODO_Packet* securePacket) {
  * \param state Pointeur sur la variable d'etat a modifier.
  * \return NoPacket si packet est nul, NullParameter si state est nul, NoError sinon.
  */
-static TODO_PacketState TODO_IsPacketSecured(const TODO_Packet* packet) {
+static TODO_ErrorType TODO_IsPacketSecured(const TODO_Packet* packet) {
 	if(packet == NULL) {
 		return NoPacket;
 	}
@@ -220,47 +310,6 @@ static TODO_PacketState TODO_IsPacketSecured(const TODO_Packet* packet) {
 	return NoError;
 }
 
-
-/**
- * \fn TODO_ErrorType TODO_Send(const TODO_Packet* packet, u8 destAddress)
- * \brief Envoie un paquet TODO sur le bus I2C.
- *
- * \attention Methode bloquante jusqu'a ce que le paquet soit entierement envoye.
- *
- * \param packet Paquet a envoyer.
- * \param destAddress Adresse du destinataire.
- * \return NoPacket si packet est nul, NoError sinon.
- */
-TODO_ErrorType tSend(const TODO_Packet* packet, u8 destAddress) {
-	int i = 0;
-	
-	if(packet == NULL) {
-		return NoPacket;
-	}
-	
-	I2C_GenerateSTART(ENABLE);
-	
-	while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
-	I2C_Send7bitAddress(destAddress & TODO_ADDRMASK, I2C_DIRECTION_TX);
-	
-	while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
-	I2C_SendData(packet->addr);
-	
-	while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
-	I2C_SendData(packet->len);
-	
-	while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
-	I2C_SendData(0x00);
-	
-	for(i = 0; i < packet->len; i++) {
-		while(I2C_GetFlagStatus(I2C_FLAG_TXEMPTY) == RESET);
-		I2C_SendData(packet->data[i]);
-	}
-	
-	I2C_GenerateSTOP(ENABLE);
-	
-	return NoError;
-}
 
 /**
  * \fn TODO_ErrorType TODO_Recv(u8 *buffer)
