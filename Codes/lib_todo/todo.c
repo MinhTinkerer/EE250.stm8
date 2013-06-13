@@ -8,16 +8,24 @@
 
 #include "todo.h"
 
-/**
- * \fn void TODO_DeInit(void)
- * \brief Applique aux registres I2C leurs parametres par defaut.
- */
-void TODO_DeInit(void) {
-	I2C_DeInit();
-}
+
+typedef struct TODO_ReceivedRawBuffer TODO_ReceivedRawBuffer;
+struct TODO_ReceivedRawBuffer {
+	uint8_t *rawBuffer;
+	TODO_ReceivedRawBuffer *next;
+};
+
+typedef TODO_ReceivedRawBuffer* TODO_RawBufferFile;
+
+
+static uint8_t *receptBuffer;
+static uint8_t dataCursor;
+static uint8_t todoFlags;
+static TODO_RawBufferFile receivedPackets = NULL;
+
 
 /**
- * \fn void TODO_Init(u8 addr)
+ * \fn void TODO_Init(TODO_Addr addr)
  * \brief Initialise le module I2C selon les specifications de TODO.
  *
  * Initialise le module I2C en adressage 7bits et configure les registres selon les specifications de TODO.
@@ -26,12 +34,21 @@ void TODO_DeInit(void) {
  *
  * \param addr Adresse TODO de ce STM8 sur le reseau.
  */
-void TODO_Init(u8 addr) {
-	I2C_Init(I2C_MAX_STANDARD_FREQ, (u16)(addr), I2C_DUTYCYCLE_2, I2C_ACK_CURR, I2C_ADDMODE_7BIT, I2C_MAX_INPUT_FREQ);
+void TODO_Init(TODO_Addr addr) {
+	I2C_Init(I2C_MAX_STANDARD_FREQ, (uint16_t)(addr), I2C_DUTYCYCLE_2, I2C_ACK_CURR, I2C_ADDMODE_7BIT, I2C_MAX_INPUT_FREQ);
 }
 
 /**
- * \fn TODO_ErrorType TODO_FillPacket(TODO_Packet* packet, const u8 *data, u8 len)
+ * \fn void TODO_Close(void)
+ * \brief Applique aux registres I2C leurs parametres par defaut.
+ */
+void TODO_Close(void) {
+	I2C_DeInit();
+}
+
+
+/**
+ * \fn TODO_ErrorType TODO_FillPacket(TODO_Packet* packet, const uint_8 *data, uint_8 len)
  * \brief Remplit un paquet TODO.
  *
  * Remplit un paquet TODO a partir des donnees et taille des donnees indiques. 
@@ -51,7 +68,7 @@ void TODO_Init(u8 addr) {
  * \param len Nombre d'octets de donnees.
  * \return NoPacket si packet est nul, PacketIsEmpty si data ou len est nul, BadDataAllocation s'il y a erreur d'allocation du buffer de donnees du paquet, NoError sinon.
  */
-TODO_ErrorType TODO_FillPacket(TODO_Packet* packet, const u8 *data, u8 len) {
+TODO_ErrorType TODO_FillPacket(TODO_Packet* packet, const uint_8 *data, uint_8 len) {
 	int i = 0;
 	
 	if(packet == NULL) {
@@ -81,7 +98,7 @@ TODO_ErrorType TODO_FillPacket(TODO_Packet* packet, const u8 *data, u8 len) {
 }
 
 /**
- * \fn TODO_ErrorType TODO_FillSecurePacket(TODO_Packet* packet, const u8 *unsecureData, u8 len, u8 key)
+ * \fn TODO_ErrorType TODO_FillSecurePacket(TODO_Packet* packet, const uint_8 *unsecureData, uint_8 len, TODO_Key key)
  * \brief Remplit un paquet TODO chiffre.
  *
  * Remplit un paquet TODO a partir des donnees et taille des donnees indiques.
@@ -101,12 +118,12 @@ TODO_ErrorType TODO_FillPacket(TODO_Packet* packet, const u8 *data, u8 len) {
  * \param key Clef de chiffrement a utiliser pour chiffrer les donnees pointees par data.
  * \return Codes d'erreur.
  */
-TODO_ErrorType TODO_FillSecurePacket(TODO_Packet* packet, const u8 *unsecureData, u8 len, u8 key) {
+TODO_ErrorType TODO_FillSecurePacket(TODO_Packet* packet, const uint_8 *unsecureData, uint_8 len, TODO_Key key) {
 	/* #TODORIANE */
 }
 
 /**
- * \fn TODO_ErrorType TODO_ExtractPacket(TODO_Packet* packet, const u8 *buff)
+ * \fn TODO_ErrorType TODO_ExtractPacket(TODO_Packet* packet, const uint8_t *buff)
  * \brief Reconnait un paquet TODO dans un buffer.
  *
  * Reconnait les membres d'une structure TODO_Packet dans un buffer de reception et les utilise pour remplir packet.
@@ -116,7 +133,7 @@ TODO_ErrorType TODO_FillSecurePacket(TODO_Packet* packet, const u8 *unsecureData
  * \param buff Pointeur sur le buffer.
  * \return NoPacket si packet est nul, NullParameter si buff est nul, PacketIsEmpty si le paquet ne contient pas de donnees, BadDataAllocation s'il y a erreur d'allocation du buffer de donnees du paquet, NoError sinon.
  */
-TODO_ErrorType TODO_ExtractPacket(TODO_Packet* packet, const u8 *buff) {
+TODO_ErrorType TODO_ExtractPacket(TODO_Packet* packet, const uint8_t *buff) {
 	int i = 0;
 	
 	if(packet == NULL) {
@@ -137,7 +154,7 @@ TODO_ErrorType TODO_ExtractPacket(TODO_Packet* packet, const u8 *buff) {
 	
 	packet->addr = buff[TODO_ADDROFFSET];
 
-	packet->data = (u8*)malloc(packet->len * sizeof(u8));
+	packet->data = (uint8_t*)malloc(packet->len * sizeof(uint8_t));
 	if(packet->data == NULL) {
 		return BadDataAllocation;
 	}
@@ -150,26 +167,38 @@ TODO_ErrorType TODO_ExtractPacket(TODO_Packet* packet, const u8 *buff) {
 }
 
 /**
- * \fn TODO_ErrorType TODO_UncryptPacket(TODO_Packet* securePacket, u8 key)
+ * \fn static TODO_ErrorType TODO_CryptPacket(TODO_Packet* unsecurePacket, TODO_Key key)
  * \brief Remplace les donnees d'un paquet par leur valeur dechiffree.
  *
  * \param packet Pointeur sur le paquet a dechiffrer.
  * \param key Clef de chiffrement utilisee pour dechiffrer les donnees.
  * \return Codes d'erreur.
  */
-TODO_ErrorType TODO_UncryptPacket(TODO_Packet* securePacket, u8 key) {
+static TODO_ErrorType TODO_CryptPacket(TODO_Packet* unsecurePacket, TODO_Key key) {
 	/* #TODORIANE */
 }
 
 /**
- * \fn TODO_ErrorType TODO_IsPacketSecured(TODO_Packet* packet, TODO_PacketState* state)
+ * \fn static TODO_ErrorType TODO_UncryptPacket(TODO_Packet* securePacket, TODO_Key key)
+ * \brief Remplace les donnees d'un paquet par leur valeur dechiffree.
+ *
+ * \param packet Pointeur sur le paquet a dechiffrer.
+ * \param key Clef de chiffrement utilisee pour dechiffrer les donnees.
+ * \return Codes d'erreur.
+ */
+static TODO_ErrorType TODO_UncryptPacket(TODO_Packet* securePacket, TODO_Key key) {
+	/* #TODORIANE */
+}
+
+/**
+ * \fn static TODO_PacketState TODO_IsPacketSecured(const TODO_Packet* packet)
  * \brief Indique si les donnees du paquet sont chiffrees ou non en se basant sur le bit CR.
  *
  * \param packet Pointeur sur le paquet.
  * \param state Pointeur sur la variable d'etat a modifier.
  * \return NoPacket si packet est nul, NullParameter si state est nul, NoError sinon.
  */
-TODO_ErrorType TODO_IsPacketSecured(TODO_Packet* packet, TODO_PacketState* state) {
+static TODO_PacketState TODO_IsPacketSecured(const TODO_Packet* packet) {
 	if(packet == NULL) {
 		return NoPacket;
 	}

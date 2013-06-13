@@ -9,6 +9,7 @@
 #ifndef TODO_H
 #define TODO_H
 
+#include "_stdint.h"
 #include "stm8s.h"
 #include "stm8s_i2c.h"
 
@@ -75,52 +76,46 @@ typedef enum {
 } TODO_PacketState;
 
 typedef enum {
-	NewTODOPacket = 0x01,
+	NewPacket = 0x01,
 	DataOverflow = 0x02
 } TODO_Flag;
+
+typedef uint8_t TODO_Addr;
+typedef uint16_t TODO_Key;
 
 /**
  * \struct TODO_Packet todo.h
  * \brief Decrit le paquet TODO.
  */
 typedef struct {
-	u8 addr;		/*!< Adresse source et bit de chiffrement. */
-	u8 length;		/*!< Nombre d'octets de donnees. */
-	u8 *data;		/*!< Pointeur sur le premier octet de donnees. */
+	TODO_Addr addr;		/*!< Adresse source et bit de chiffrement. */
+	uint8_t length;		/*!< Nombre d'octets de donnees. */
+	uint8_t *data;		/*!< Pointeur sur le premier octet de donnees. */
+	// uint8_t secured;		/*!< bit. */
 } TODO_Packet;
 
-typedef struct TODO_ReceivedRawPacket TODO_ReceivedRawPacket;
-struct TODO_ReceivedRawPacket {
-	u8 *rawPacket;
-	TODO_ReceivedRawPacket *next;
-};
 
-typedef TODO_ReceivedRawPacket* TODO_RawPacketFile;
+extern void TODO_Init(TODO_Addr addr);
+extern void TODO_Close(void);
+
+extern TODO_Packet* TODO_CreatePacket(const uint8_t *data, u8 len);
+extern void TODO_FreePacket(TODO_Packet* packet);
+
+extern TODO_ErrorType TODO_Send(TODO_Addr destAddress, const uint8_t* datas, size_t size);
+extern TODO_ErrorType TODO_SendSecure(TODO_Addr destAddress, uint8_t* datas, size_t size, TODO_Key key);
+extern TODO_ErrorType TODO_SendPacket(TODO_Addr destAddress, const TODO_Packet* packet);
+extern TODO_ErrorType TODO_SendSecurePacket(TODO_Addr destAddress, TODO_Packet* packet, TODO_Key key);
+
+extern uint8_t TODO_NewPacketPresent(void);
+
+extern TODO_Packet* TODO_Recv(void);
+extern TODO_Packet* TODO_RawRecv(void);
 
 
-void TODO_DeInit(void);
-void TODO_Init(u8 addr);
 
-TODO_ErrorType TODO_FillPacket(TODO_Packet* packet, const u8 *data, u8 len);
-TODO_ErrorType TODO_FillSecurePacket(TODO_Packet* packet, const u8 *unsecureData, u8 len, u8 key);
+/* ******************************************************************************************** */
 
-TODO_ErrorType TODO_ExtractPacket(TODO_Packet* packet, const u8 *buff);
-TODO_ErrorType TODO_UncryptPacket(TODO_Packet* securePacket, u8 key);
-TODO_ErrorType TODO_IsPacketSecured(TODO_Packet* packet, TODO_PacketState* state);
+//TODO_ErrorType TODO_ExtractPacket(TODO_Packet* packet, const uint8_t *buff);
 
-TODO_ErrorType TODO_Send(const TODO_Packet* packet, u8 destAddress);
-TODO_ErrorType TODO_Recv(u8 *buffer);
-
-TODO_ErrorType TODO_AsyncRecv(TODO_Packet *receivedPacket);
-
-static void addRawPacket(u8* buf);
-static TODO_ReceivedRawPacket* defileRawPacket(void);
-static void freeRawPacketFile(TODO_RawPacketFile tete);
-
-void TODO_ReceiveITHandler(void);
-void TODO_StopITHandler(void);
-
-FlagStatus TODO_GetFlagState(TODO_Flag flag);
-void TODO_ClearFlag(TODO_Flag flag);
 
 #endif
