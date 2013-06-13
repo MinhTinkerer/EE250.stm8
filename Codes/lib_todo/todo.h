@@ -95,27 +95,22 @@ typedef struct {
 } TODO_Packet;
 
 
-extern void TODO_Init(TODO_Addr addr);
+extern void TODO_Init(TODO_Addr addr, TODO_Key key);
+extern void TODO_ChangeKey(TODO_Key newKey);
 extern void TODO_Close(void);
 
 extern TODO_Packet* TODO_CreatePacket(const uint8_t *data, u8 len);
 extern void TODO_FreePacket(TODO_Packet* packet);
 
 extern TODO_ErrorType TODO_Send(TODO_Addr destAddress, const uint8_t* datas, size_t size);
-extern TODO_ErrorType TODO_SendSecure(TODO_Addr destAddress, uint8_t* datas, size_t size, TODO_Key key);
+extern TODO_ErrorType TODO_SendSecure(TODO_Addr destAddress, uint8_t* datas, size_t size);
 extern TODO_ErrorType TODO_SendPacket(TODO_Addr destAddress, const TODO_Packet* packet);
-extern TODO_ErrorType TODO_SendSecurePacket(TODO_Addr destAddress, TODO_Packet* packet, TODO_Key key);
+extern TODO_ErrorType TODO_SendSecurePacket(TODO_Addr destAddress, TODO_Packet* packet);
 
 extern uint8_t TODO_NewPacketPresent(void);
+extern @interrupt void TODO_ITHandler(void);
 
 extern TODO_Packet* TODO_Recv(void);
-extern TODO_Packet* TODO_RawRecv(void);
-
-
-
-/* ******************************************************************************************** */
-
-//TODO_ErrorType TODO_ExtractPacket(TODO_Packet* packet, const uint8_t *buff);
 
 
 #endif

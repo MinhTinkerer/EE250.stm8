@@ -18,6 +18,7 @@ struct TODO_ReceivedRawBuffer {
 typedef TODO_ReceivedRawBuffer* TODO_RawBufferFile;
 
 
+static TODO_Key internKey;
 static uint8_t *receptBuffer;
 static uint8_t dataCursor;
 static uint8_t todoFlags;
@@ -25,7 +26,7 @@ static TODO_RawBufferFile receivedPackets = NULL;
 
 
 /**
- * \fn void TODO_Init(TODO_Addr addr)
+ * \fn void TODO_Init(TODO_Addr addr, TODO_Key key)
  * \brief Initialise le module I2C selon les specifications de TODO.
  *
  * Initialise le module I2C en adressage 7bits et configure les registres selon les specifications de TODO.
@@ -34,8 +35,17 @@ static TODO_RawBufferFile receivedPackets = NULL;
  *
  * \param addr Adresse TODO de ce STM8 sur le reseau.
  */
-void TODO_Init(TODO_Addr addr) {
+void TODO_Init(TODO_Addr addr, TODO_Key key) {
+	internKey = key;
 	I2C_Init(I2C_MAX_STANDARD_FREQ, (uint16_t)(addr), I2C_DUTYCYCLE_2, I2C_ACK_CURR, I2C_ADDMODE_7BIT, I2C_MAX_INPUT_FREQ);
+}
+
+/**
+ * \fn void TODO_ChangeKey(TODO_Key newKey)
+ * \brief Change la clef de chiffrement.
+ */
+void TODO_ChangeKey(TODO_Key newKey) {
+	internKey = key;
 }
 
 /**
@@ -47,146 +57,139 @@ void TODO_Close(void) {
 }
 
 
-/**
- * \fn TODO_ErrorType TODO_FillPacket(TODO_Packet* packet, const uint_8 *data, uint_8 len)
- * \brief Remplit un paquet TODO.
- *
- * Remplit un paquet TODO a partir des donnees et taille des donnees indiques. 
- * L'adresse source utilisee est celle indiquee a TODO_Init. 
- * Positionne le bit de poids faible du membre addr de packet a 0.
- *
- * Si data ou len est nul, le paquet sera valide mais sera vide.
- * Un paquet vide a les proprietes suivantes :
- * 		- addr = 0
- * 		- len = 0
- * 		- data = NULL
- *
- * \attention Les donnees sont incluses telles quelles dans le paquet. Utilisez TODO_FillSecurePacket pour chiffrer les donnees.
- *
- * \param packet Pointeur sur le paquet a remplir.
- * \param data Pointeur sur le premier octet de donnees.
- * \param len Nombre d'octets de donnees.
- * \return NoPacket si packet est nul, PacketIsEmpty si data ou len est nul, BadDataAllocation s'il y a erreur d'allocation du buffer de donnees du paquet, NoError sinon.
- */
-TODO_ErrorType TODO_FillPacket(TODO_Packet* packet, const uint_8 *data, uint_8 len) {
-	int i = 0;
-	
-	if(packet == NULL) {
-		return NoPacket;
+uint8_t TODO_NewPacketPresent(void) {
+	if(TODO_GetFlagState(DataOverflow)) {
+		dataCursor = 0;
+		TODO_ClearFlag(DataOverflow);
+		return (uint8_t)0;	/* on ignore le paquet car il est plus grand que ce que prevoit le protocole */
 	}
 	
-	if(data == NULL || len == 0) {
-		packet->addr = 0;
-		packet->len = 0;
-		packet->data = NULL;
-		return PacketIsEmpty;
-	}
+	if(TODO_GetFlagState(NewTODOPacket)) {
+		if(receptBuffer[TODO_LENGTHOFFSET] != dataCursor) {
+			return (uint8_t)0;	/* on ignore le paquet car il n'annonce pas le bon nombre d'octets de donnees */
+		}
+		
+		addRawPacket(receptBuffer);
+		
+		assert( receptBuffer = (uint8_t*)malloc( TODO_MAXPACKETLENGTH * sizeof(uint8_t) ) );
 
-	packet->addr = I2C->OARL & (u8)(~TODO_CRMASK);
-	packet->len = len;
-	
-	packet->data = (u8*)malloc(len * sizeof(u8));
-	if(packet->data == NULL) {
-		return BadDataAllocation;
+		dataCursor = 0;
+		TODO_ClearFlag(NewTODOPacket);
+		
+		return (uint8_t)1;
 	}
 	
-	for(i = 0; i < len; i++) {
-		packet->data[i] = data[i];
-	}
-	
-	return NoError;
+	return (uint8_t)0;
 }
 
+@interrupt void TODO_ITHandler(void) {
+	/* S'il y a un octet a lire */
+	if(I2C_GetITStatus(I2C_ITPENDINGBIT_RXNOTEMPTY)) {
+		
+		if(receivedPackets != NULL) {
+		
+			if(dataCursor < TODO_MAXPACKETLENGTH) {
+				/* On met l'octet recu dans le buffer de donnees, */
+				/* celui ci sera redirigé dans l'octet d'addresse ou de taille si besoin. */
+				receptBuffer[dataCursor] = I2C_ReceiveData();
+			}
+			dataCursor++;
+		}
+		
+		I2C_ClearITPendingBit(I2C_ITPENDINGBIT_RXNOTEMPTY);
+	}
+
+	/* Si le bit STOP est detecte */
+	if(I2C_GetITStatus(I2C_ITPENDINGBIT_STOPDETECTION)) {
+	
+		if(dataCursor <= TODO_MAXPACKETLENGTH) {
+			/* Si c'est le dernier octet recu, on leve NewPacket */
+			todoFlags |= NewPacket;
+		}
+		else(dataCursor > TODO_MAXPACKETLENGTH) {
+			/* Si le curseur du buffer du reception depasse la taille maximum d'un paquet, on leve DataOverflow */
+			todoFlags |= DataOverflow;
+		}
+		
+		I2C_ClearITPendingBit(I2C_ITPENDINGBIT_STOPDETECTION);
+	}
+}
+
+
+static FlagStatus TODO_GetFlagState(TODO_Flag flag) {
+	if((todoFlags & flag) == flag) {
+		return SET;
+	}
+	
+	return RESET;
+}
+
+static void TODO_ClearFlag(TODO_Flag flag) {
+	todoFlags &= (uint8_t)(~flag);
+}
+
+
+static void addRawBuffer(uint8_t* buf) {
+	TODO_RawBufferFile tete = receivedPackets;
+	TODO_ReceivedRawBuffer* nouveauPaquet = NULL;
+	
+	assert( nouveauPaquet = (TODO_ReceivedRawBuffer*)malloc( sizeof(TODO_ReceivedRawBuffer) ) );
+
+	nouveauPaquet->rawBuffer = buf;
+	nouveauPaquet->next = NULL;
+	
+	if(tete == NULL) {
+		tete = nouveauPaquet;
+	}
+	else {
+		while(tete != NULL && tete->next != NULL) {
+			tete = tete->next;
+		}
+		tete->next = nouveauPaquet;
+	}
+}
+
+static TODO_ReceivedRawBuffer* defileRawBuffer(void) {
+	TODO_ReceivedRawBuffer *tete = receivedPackets;
+	if(tete != NULL) {
+		receivedPackets = receivedPackets->next;
+		tete->next = NULL;
+		return tete;
+	}
+	
+	return NULL;
+}
+
+static void freeRawBufferFile(TODO_RawBufferFile tete) {
+	if(tete != NULL) {
+		if(tete->next != NULL) {
+			freeRawBufferFile(tete->next);
+		}
+		free(tete->rawBuffer);
+		free(tete);
+	}
+}
+
+
 /**
- * \fn TODO_ErrorType TODO_FillSecurePacket(TODO_Packet* packet, const uint_8 *unsecureData, uint_8 len, TODO_Key key)
- * \brief Remplit un paquet TODO chiffre.
+ * \fn static TODO_ErrorType TODO_CryptPacket(TODO_Packet* unsecurePacket)
+ * \brief Remplace les donnees d'un paquet par leur valeur chiffree.
  *
- * Remplit un paquet TODO a partir des donnees et taille des donnees indiques.
- * L'adresse source utilisee est celle indiquee a TODO_Init.
- * Chiffre les donnees grace a la clef de chiffrement passee en parametre.
- * Positionne le bit de poids faible du membre addr de packet a 1.
- *
- * Si data ou len est nul, le paquet sera valide mais sera vide.
- * Un paquet vide a les proprietes suivantes :
- * 		- addr = 0
- * 		- len = 0
- * 		- data = NULL
- *
- * \param packet Pointeur sur le paquet a remplir.
- * \param unsecureData Pointeur sur le premier octet de donnees a chiffrer.
- * \param len Nombre d'octets de donnees.
- * \param key Clef de chiffrement a utiliser pour chiffrer les donnees pointees par data.
+ * \param packet Pointeur sur le paquet a chiffrer.
  * \return Codes d'erreur.
  */
-TODO_ErrorType TODO_FillSecurePacket(TODO_Packet* packet, const uint_8 *unsecureData, uint_8 len, TODO_Key key) {
+static TODO_ErrorType TODO_CryptPacket(TODO_Packet* unsecurePacket) {
 	/* #TODORIANE */
 }
 
 /**
- * \fn TODO_ErrorType TODO_ExtractPacket(TODO_Packet* packet, const uint8_t *buff)
- * \brief Reconnait un paquet TODO dans un buffer.
- *
- * Reconnait les membres d'une structure TODO_Packet dans un buffer de reception et les utilise pour remplir packet.
- * \attention L'adresse source reconnue ici n'a aucun lien avec celle indiquee par TODO_Init.
- *
- * \param packet Pointeur sur le paquet a remplir.
- * \param buff Pointeur sur le buffer.
- * \return NoPacket si packet est nul, NullParameter si buff est nul, PacketIsEmpty si le paquet ne contient pas de donnees, BadDataAllocation s'il y a erreur d'allocation du buffer de donnees du paquet, NoError sinon.
- */
-TODO_ErrorType TODO_ExtractPacket(TODO_Packet* packet, const uint8_t *buff) {
-	int i = 0;
-	
-	if(packet == NULL) {
-		return NoPacket;
-	}
-
-	if(buff == NULL) {
-		return NullParameter;
-	}
-
-	packet->len = buff[TODO_LENGTHOFFSET];
-	
-	if(packet->len == 0) {
-		packet->addr = 0;
-		packet->data = NULL;
-		return PacketIsEmpty;
-	}
-	
-	packet->addr = buff[TODO_ADDROFFSET];
-
-	packet->data = (uint8_t*)malloc(packet->len * sizeof(uint8_t));
-	if(packet->data == NULL) {
-		return BadDataAllocation;
-	}
-	
-	for(i = 0; i < packet->len; i++) {
-		packet->data[i] = buff[TODO_DATAOFFSET + i];
-	}
-	
-	return NoError;
-}
-
-/**
- * \fn static TODO_ErrorType TODO_CryptPacket(TODO_Packet* unsecurePacket, TODO_Key key)
+ * \fn static TODO_ErrorType TODO_UncryptPacket(TODO_Packet* securePacket)
  * \brief Remplace les donnees d'un paquet par leur valeur dechiffree.
  *
  * \param packet Pointeur sur le paquet a dechiffrer.
- * \param key Clef de chiffrement utilisee pour dechiffrer les donnees.
  * \return Codes d'erreur.
  */
-static TODO_ErrorType TODO_CryptPacket(TODO_Packet* unsecurePacket, TODO_Key key) {
-	/* #TODORIANE */
-}
-
-/**
- * \fn static TODO_ErrorType TODO_UncryptPacket(TODO_Packet* securePacket, TODO_Key key)
- * \brief Remplace les donnees d'un paquet par leur valeur dechiffree.
- *
- * \param packet Pointeur sur le paquet a dechiffrer.
- * \param key Clef de chiffrement utilisee pour dechiffrer les donnees.
- * \return Codes d'erreur.
- */
-static TODO_ErrorType TODO_UncryptPacket(TODO_Packet* securePacket, TODO_Key key) {
+static TODO_ErrorType TODO_UncryptPacket(TODO_Packet* securePacket) {
 	/* #TODORIANE */
 }
 
@@ -217,6 +220,7 @@ static TODO_PacketState TODO_IsPacketSecured(const TODO_Packet* packet) {
 	return NoError;
 }
 
+
 /**
  * \fn TODO_ErrorType TODO_Send(const TODO_Packet* packet, u8 destAddress)
  * \brief Envoie un paquet TODO sur le bus I2C.
@@ -227,7 +231,7 @@ static TODO_PacketState TODO_IsPacketSecured(const TODO_Packet* packet) {
  * \param destAddress Adresse du destinataire.
  * \return NoPacket si packet est nul, NoError sinon.
  */
-TODO_ErrorType TODO_Send(const TODO_Packet* packet, u8 destAddress) {
+TODO_ErrorType tSend(const TODO_Packet* packet, u8 destAddress) {
 	int i = 0;
 	
 	if(packet == NULL) {
@@ -269,7 +273,7 @@ TODO_ErrorType TODO_Send(const TODO_Packet* packet, u8 destAddress) {
  * \param buffer Pointeur sur le buffer de reception.
  * \return ReceptBufferIsNull si buffer est nul, NoError sinon.
  */
-TODO_ErrorType TODO_Recv(u8 *buffer) {
+TODO_ErrorType tRecv(u8 *buffer) {
 	int i = 0;
 	
 	if(buffer == NULL) {
