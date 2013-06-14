@@ -39,6 +39,7 @@ static TODO_RawBufferFile receivedPackets = NULL;
 void TODO_Init(TODO_Addr addr, TODO_Key key) {
 	internKey = key;
 	I2C_Init(I2C_MAX_STANDARD_FREQ, (uint16_t)(addr), I2C_DUTYCYCLE_2, I2C_ACK_CURR, I2C_ADDMODE_7BIT, I2C_MAX_INPUT_FREQ);
+	//I2C_ITConfig(I2C_IT_TypeDef ITName, ENABLE);
 }
 
 /**
