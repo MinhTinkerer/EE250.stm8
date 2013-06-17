@@ -1,15 +1,17 @@
-/* MONSTM8.C file
- * 
- * SCHLOTTERBECK Guillaume
- * PERARD Doriane
- *
- * 10/04/2031
-*/
+/**
+    \file MonSTM8.c
+    \brief Fonctions utiles au STM8
+    \author SCHLOTTERBECK Guillaume, PERARD Doriane
+    \version 1.0
+    \date 10/04/2013
+	
+	Maj : Alex Nodet, 17/06/2013
+**/
 
 #include "../include/MonSTM8.h"
 
 void BP1_init() {
-    // Le bouton 1
+    /* Le bouton 1 */
     SET(GPIOD->DDR, GPIO_PIN_7, INPUT);
     SET(GPIOD->CR1, GPIO_PIN_7, FLOATING);
     
@@ -18,7 +20,7 @@ void BP1_init() {
 }
 
 void BP2_init() {
-    // Le bouton 2
+    /* Le bouton 2 */
     SET(GPIOE->DDR, GPIO_PIN_7, INPUT);
     SET(GPIOE->CR1, GPIO_PIN_7, FLOATING);
     
@@ -28,32 +30,32 @@ void BP2_init() {
 
 void BPs_IT_enable(char b) {
     if ( b != 0) {
-        SET(GPIOD->CR2, GPIO_PIN_7, ENABLE); // BP1
-        SET(GPIOE->CR2, GPIO_PIN_7, ENABLE); // BP2
+        SET(GPIOD->CR2, GPIO_PIN_7, ENABLE); /* BP1 */
+        SET(GPIOE->CR2, GPIO_PIN_7, ENABLE); /* BP2 */
         
-        // GPIOD->CR2 |= CONF(GPIO_PIN_7, ENABLE); // BP1
-        // GPIOE->CR2 |= CONF(GPIO_PIN_7, ENABLE); // BP2
+        // GPIOD->CR2 |= CONF(GPIO_PIN_7, ENABLE); /* BP1 */
+        // GPIOE->CR2 |= CONF(GPIO_PIN_7, ENABLE); /* BP2 */
         
-        EXTI_SetExtIntSensitivity(EXTI_PORT_GPIOD, EXTI_SENSITIVITY_RISE_ONLY); // BP1
-        EXTI_SetExtIntSensitivity(EXTI_PORT_GPIOE, EXTI_SENSITIVITY_RISE_ONLY); // BP2
+        EXTI_SetExtIntSensitivity(EXTI_PORT_GPIOD, EXTI_SENSITIVITY_RISE_ONLY); /* BP1 */
+        EXTI_SetExtIntSensitivity(EXTI_PORT_GPIOE, EXTI_SENSITIVITY_RISE_ONLY); /* BP2 */
         
-                    // EXTI_SENSITIVITY_FALL_LOW  : Interrupt on Falling edge and Low level
-                    // EXTI_SENSITIVITY_RISE_ONLY : Interrupt on Rising edge only
-                    // EXTI_SENSITIVITY_FALL_ONLY : Interrupt on Falling edge only
-                    // EXTI_SENSITIVITY_RISE_FALL : Interrupt on Rising and Falling edges
+                    /* EXTI_SENSITIVITY_FALL_LOW  : Interrupt on Falling edge and Low level */
+                    /* EXTI_SENSITIVITY_RISE_ONLY : Interrupt on Rising edge only */
+                    /* EXTI_SENSITIVITY_FALL_ONLY : Interrupt on Falling edge only */
+                    /* EXTI_SENSITIVITY_RISE_FALL : Interrupt on Rising and Falling edges */
         
     }
     else {
-        SET(GPIOD->CR2, GPIO_PIN_7, DISABLE); // BP1
-        SET(GPIOE->CR2, GPIO_PIN_7, DISABLE); // BP2
+        SET(GPIOD->CR2, GPIO_PIN_7, DISABLE); /* BP1 */
+        SET(GPIOE->CR2, GPIO_PIN_7, DISABLE); /* BP2 */
     
-        // GPIOD->CR2 |= CONF(GPIO_PIN_7, DISABLE); // BP1
-        // GPIOE->CR2 |= CONF(GPIO_PIN_7, DISABLE); // BP2
+        // GPIOD->CR2 |= CONF(GPIO_PIN_7, DISABLE); /* BP1 */
+        // GPIOE->CR2 |= CONF(GPIO_PIN_7, DISABLE); /* BP2 */
     }
 }
 
 void CLEF_init() {
-    // les clefs
+    /* les clefs */
     SET(GPIOC->DDR, ALL, INPUT);
     SET(GPIOC->CR1, ALL, PULLUP);  
     
@@ -88,15 +90,11 @@ char GLED_stat() {
 
 void GLED_enable(char v) {
     if ( v != 0 ) {
-        // Allumer la LED
+        /* Allumer la LED */
         GPIOD->ODR = GPIOD->ODR & ~GPIO_PIN_0;
     }
     else {
-        // eteindre la LED
+        /* Eteindre la LED */
         GPIOD->ODR = GPIOD->ODR | GPIO_PIN_0;
     }
 }
-
-
-
-

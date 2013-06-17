@@ -1,10 +1,12 @@
-/* Flash.H file
- * 
- * SCHLOTTERBECK Guillaume
- * PERARD Doriane
- *
- * 10/04/2031
-*/
+/**
+    \file Flash.h
+    \brief Prototypes utiles a l'utilisation de l'EEPROM
+    \author SCHLOTTERBECK Guillaume, PERARD Doriane
+    \version 1.0
+    \date 10/04/2013
+	
+	Maj : Alex Nodet, 17/06/2013
+**/
 
 #ifndef FLASH_H
 #define FLASH_H
@@ -24,7 +26,4 @@ extern uint32_t FLASH_read(uint32_t addr, char *buffer, uint32_t size);
 
 
 
-#endif
-
-
-
+#endif	/* !FLASH_H */

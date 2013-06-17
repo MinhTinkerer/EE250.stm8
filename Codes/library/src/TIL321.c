@@ -1,10 +1,12 @@
-/* TIL321.C file
- * 
- * SCHLOTTERBECK Guillaume
- * PERARD Doriane
- *
- * 10/04/2031
-*/
+/**
+    \file TIL321.c
+    \brief Fonctions utiles a l'utilisation du TIL321
+    \author SCHLOTTERBECK Guillaume, PERARD Doriane
+    \version 1.0
+    \date 10/04/2013
+	
+	Maj : Alex Nodet, 17/06/2013
+**/
 
 #include "../include/TIL321.h"
 

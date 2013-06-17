@@ -1,10 +1,12 @@
-/* TIM4.H file
- * 
- * SCHLOTTERBECK Guillaume
- * PERARD Doriane
- *
- * 10/04/2031
-*/
+/**
+    \file Tim4.h
+    \brief Prototypes utiles a l'utilisation du Timer4
+    \author SCHLOTTERBECK Guillaume, PERARD Doriane
+    \version 1.0
+    \date 10/04/2013
+	
+	Maj : Alex Nodet, 17/06/2013
+**/
 
 #ifndef TIM4_H
 #define TIM4_H
@@ -29,7 +31,4 @@ extern void Tim4_Stop(void);
 
 
 
-
-
-#endif// !TIM4_H
-
+#endif	/* !TIM4_H */

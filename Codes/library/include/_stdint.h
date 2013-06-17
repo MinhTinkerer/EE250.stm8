@@ -1,6 +1,6 @@
 /**
-    \file _stdint.h.h
-    \brief Definie des types standards
+    \file _stdint.h
+    \brief Definit des types standards
     \author SCHLOTTERBECK Guillaume
     \version 1.0
     \date 10/06/2013

@@ -1,10 +1,12 @@
-/* COMMON.H file
- * 
- * SCHLOTTERBECK Guillaume
- * PERARD Doriane
- *
- * 10/04/2031
-*/
+/**
+    \file common.h
+    \brief Definie des macro standards
+    \author SCHLOTTERBECK Guillaume, PERARD Doriane
+    \version 1.0
+    \date 10/04/2013
+	
+	Maj : Alex Nodet, 17/06/2013
+**/
 
 #ifndef COMMON_H
 #define COMMON_H
@@ -32,7 +34,4 @@
 #define ENABLE 1
 
 
-
-#endif// !COMMON_H
-
-
+#endif	/* !COMMON_H */

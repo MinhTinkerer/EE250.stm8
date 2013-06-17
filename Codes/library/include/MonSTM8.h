@@ -1,10 +1,12 @@
-/* MONSTM8.H file
- * 
- * SCHLOTTERBECK Guillaume
- * PERARD Doriane
- *
- * 10/04/2031
-*/
+/**
+    \file MonSTM8.h
+    \brief Prototypes utiles au STM8
+    \author SCHLOTTERBECK Guillaume, PERARD Doriane
+    \version 1.0
+    \date 10/04/2013
+	
+	Maj : Alex Nodet, 17/06/2013
+**/
 
 #ifndef MONSTM8_H
 #define MONSTM8_H
@@ -18,10 +20,10 @@
 #include "Flash.h"
 
 
-// SI i est un chiffre, 
-//     ALORS convertir en ASCII
-// SINON
-//     renvoyer 'E' 
+/* SI i est un chiffre, 
+       ALORS convertir en ASCII
+   SINON
+       renvoyer 'E'  */
 #define num2ASCII(i) ((i<=9 && i>=0) ? i+0x30 : 'E')
 
 #define ASCII2num(i) ((i<='9' && i>='0')? i-0x30 : -1)
@@ -41,7 +43,4 @@ extern char GLED_stat(void);
 extern void GLED_enable(char);
 
 
-#endif// !MONSTM8_H
-
-
-
+#endif	/* !MONSTM8_H */
